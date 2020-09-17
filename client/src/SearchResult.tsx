@@ -1,6 +1,7 @@
 import React from "react";
 
 export const SearchResult = () => {
+  const qs = this.props.qs;
   return (
     <div>
       <header>
@@ -10,6 +11,14 @@ export const SearchResult = () => {
         <input type="submit" value="検索" />
       </header>
       <p>「小説　太郎」の検索結果</p>
+      <ul>
+        <li>
+          query1: <strong>{qs.query1}</strong>
+        </li>
+        <li>
+          query2: <strong>{qs.query2}</strong>
+        </li>
+      </ul>
       <ul>
         <li>
           <img src="" alt="" />
