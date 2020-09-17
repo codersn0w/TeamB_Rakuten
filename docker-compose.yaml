@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  db:
+    build: ./mysql/
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
+      - ./mysql/sqls:/docker-entrypoint-initdb.d # 初期化時に実行するSQL
+    environment:
+      - MYSQL_ROOT_PASSWORD=hoge
+    tty: true
+
+  server:
+    build: ./server
+    ports:
+      - "5000:5000"
+    volumes:
+      - "./server/:/project"
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+#      FLASK_APP: run.py
+      FLASK_ENV: development
+    command: flask run -h 0.0.0.0
+
+  client:
+    command: /client/client.sh
+    build:
+      context: ./client
+    volumes:
+      - ./client:/client
+      - /client/node_modules
+    ports:
+      - "3000:3000"
+    tty: true
