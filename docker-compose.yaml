@@ -26,7 +26,7 @@ services:
     command: flask run -h 0.0.0.0
 
   client:
-    command: /client/client.sh
+    command: yarn start
     build:
       context: ./client
     volumes:
