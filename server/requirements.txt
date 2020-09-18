@@ -38,3 +38,7 @@ zipp==0.6.0
 flask_marshmallow
 flask_cors
 pymysql
+sqlalchemy-migrate
+flask-restful
+flask-migrate
+cryptography
