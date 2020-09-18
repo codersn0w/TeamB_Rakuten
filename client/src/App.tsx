@@ -12,6 +12,7 @@ import Thread from "./components/Thread";
 import RequestForm from "./components/RequestForm";
 import { Footer } from "./components/Footer";
 import NotificationComponent from "./components/Notification";
+import RequestDetails from "./components/RequestDetails";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -51,15 +52,21 @@ export const App = () => {
         />
         <Route
           exact
+          path="/notification"
+          component={NotificationComponent}
+          render={(props) => <NotificationComponent {...props} />}
+        />
+        <Route
+          exact
           path="/request/create/:id"
           component={RequestForm}
           render={(props) => <RequestForm {...props} />}
         />
         <Route
           exact
-          path="/notification"
-          component={NotificationComponent}
-          render={(props) => <NotificationComponent {...props} />}
+          path="/request/view/:id"
+          component={RequestDetails}
+          render={(props) => <RequestDetails {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
