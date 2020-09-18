@@ -5,7 +5,7 @@ import { Top } from "./components/Top";
 import { Profile } from "./components/Profile";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
-import { SearchResult } from "./SearchResult";
+import SearchResult from "./SearchResult";
 import queryString from "query-string";
 
 export const App = () => {
@@ -20,12 +20,11 @@ export const App = () => {
         <Header></Header>
         <Route path="/" component={Top} />
         <ProtectedRoute exact path="/profile" component={Profile} />
-        <ProtectedRoute
-          path="/search"
+        <Route
+          exact
+          path="/search/:query"
           component={SearchResult}
-          render={(props: any) => (
-            <SearchResult qs={queryString.parse(props.location.search)} />
-          )}
+          render={(props) => <SearchResult {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
