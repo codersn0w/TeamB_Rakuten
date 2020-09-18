@@ -10,6 +10,7 @@ import BookDetail from "./components/BookDetail";
 import Genre from "./Genre";
 import Thread from "./components/Thread";
 import RequestForm from "./components/RequestForm";
+import NotificationComponent from "./components/Notification";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -52,6 +53,12 @@ export const App = () => {
           path="/request/create/:id"
           component={RequestForm}
           render={(props) => <RequestForm {...props} />}
+        />
+        <Route
+          exact
+          path="/notification"
+          component={NotificationComponent}
+          render={(props) => <NotificationComponent {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
