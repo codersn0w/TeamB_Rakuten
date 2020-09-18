@@ -54,7 +54,6 @@ export const App = () => {
           component={RequestForm}
           render={(props) => <RequestForm {...props} />}
         />
-        {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
         {/*  exact*/}
         {/*  path="/Games/GameArticle/:id"*/}
