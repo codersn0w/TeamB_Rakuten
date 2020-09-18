@@ -9,6 +9,7 @@ import SearchResult from "./SearchResult";
 import BookDetail from "./BookDetail";
 import Genre from "./Genre";
 import Thread from "./Thread";
+import RequestForm from "./RequestForm";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -45,6 +46,12 @@ export const App = () => {
           path="/threads/:id"
           component={Thread}
           render={(props) => <Thread {...props} />}
+        />
+        <Route
+          exact
+          path="/request/create/:id"
+          component={RequestForm}
+          render={(props) => <RequestForm {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
