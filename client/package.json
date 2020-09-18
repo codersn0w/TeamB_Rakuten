@@ -15,7 +15,6 @@
     "@types/react-router-dom": "^5.1.5",
     "google-protobuf": "^3.11.4",
     "grpc-web": "1.0.7",
-    "query-string": "^6.13.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",

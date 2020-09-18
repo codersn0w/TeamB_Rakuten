@@ -6,7 +6,7 @@ import { Profile } from "./components/Profile";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchResult from "./SearchResult";
-import queryString from "query-string";
+import BookDetail from "./BookDetail";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -25,6 +25,12 @@ export const App = () => {
           path="/search/:query"
           component={SearchResult}
           render={(props) => <SearchResult {...props} />}
+        />
+        <Route
+          exact
+          path="/books/:id"
+          component={BookDetail}
+          render={(props) => <BookDetail {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
