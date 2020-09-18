@@ -7,6 +7,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
 import SearchResult from "./SearchResult";
 import BookDetail from "./BookDetail";
+import Genre from "./Genre";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -31,6 +32,12 @@ export const App = () => {
           path="/books/:id"
           component={BookDetail}
           render={(props) => <BookDetail {...props} />}
+        />
+        <Route
+          exact
+          path="/genre/:id"
+          component={Genre}
+          render={(props) => <Genre {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
