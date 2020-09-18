@@ -11,6 +11,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=hoge
     tty: true
+    command: --innodb-use-native-aio=0 # 追加！
 
   server:
     build: ./server
@@ -31,7 +32,7 @@ services:
       context: ./client
     volumes:
       - ./client:/client
-      - /client/node_modules
+#      - /client/node_modules
     ports:
       - "3000:3000"
     tty: true
