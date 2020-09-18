@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchResult from "./SearchResult";
 import BookDetail from "./BookDetail";
 import Genre from "./Genre";
+import Thread from "./Thread";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -38,6 +39,12 @@ export const App = () => {
           path="/genre/:id"
           component={Genre}
           render={(props) => <Genre {...props} />}
+        />
+        <Route
+          exact
+          path="/threads/:id"
+          component={Thread}
+          render={(props) => <Thread {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
