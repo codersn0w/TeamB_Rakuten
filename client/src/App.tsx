@@ -10,6 +10,7 @@ import BookDetail from "./BookDetail";
 import Genre from "./Genre";
 import Thread from "./Thread";
 import RequestForm from "./RequestForm";
+import {Footer} from "./components/Footer";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -60,7 +61,7 @@ export const App = () => {
         {/*  render={(props) => <GameArticle {...props} />}*/}
         {/*/>*/}
         {/*<Route path="/Blog" component={Blog} />*/}
-        {/*<Footer></Footer>*/}
+        <Footer></Footer>
       </div>
     </Router>
   );
