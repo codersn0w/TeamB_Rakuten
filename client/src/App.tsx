@@ -8,8 +8,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import SearchResult from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
 import Genre from "./Genre";
-import Thread from "./components/Thread";
-import RequestForm from "./components/RequestForm";
+import Thread from "./Thread";
+import RequestForm from "./RequestForm";
+import {Footer} from "./components/Footer";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -60,7 +61,7 @@ export const App = () => {
         {/*  render={(props) => <GameArticle {...props} />}*/}
         {/*/>*/}
         {/*<Route path="/Blog" component={Blog} />*/}
-        {/*<Footer></Footer>*/}
+        <Footer></Footer>
       </div>
     </Router>
   );
