@@ -5,7 +5,7 @@ from flask_restful import Api
 from database import init_db
 
 from apis.hoge import HogeListAPI, HogeAPI
-
+from apis.genre import GenreAPI
 
 def create_app():
 
@@ -17,6 +17,7 @@ def create_app():
   api = Api(app)
   api.add_resource(HogeListAPI, '/hoges')
   api.add_resource(HogeAPI, '/hoges/<id>')
+  api.add_resource(GenreAPI, '/community/<id>')
 
   return app
 
