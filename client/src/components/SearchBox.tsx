@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme:Theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
+        backgroundColor: fade(theme.palette.common.white, 0.25),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
+            backgroundColor: fade(theme.palette.common.white, 0.45),
         },
         marginLeft: 0,
         width: '100%',
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme:Theme) => ({
         color: 'inherit',
         width: '100%',
     },
-    inputInput: {
+    inputInput:(props:Props) => ( {
         paddingTop: theme.spacing(1),
         paddingRight: theme.spacing(1),
         paddingBottom: theme.spacing(1),
@@ -46,12 +46,12 @@ const useStyles = makeStyles((theme:Theme) => ({
         transition: theme.transitions.create('width'),
         width: '100%',
         [theme.breakpoints.up('sm')]: {
-            width: 120,
+            width: props.defaultWidth ? props.defaultWidth : 120,
             '&:focus': {
-                width: 200,
+                width: props.focusWidth ? props.focusWidth : 200,
             },
         },
-    },
+    }),
 }));
 
 type Props = {
@@ -76,7 +76,6 @@ export const SearchBox:React.FC<Props> = (props:Props) => {
                         root: classes.inputRoot,
                         input: classes.inputInput,
                     }}
-                    style={{width:props.defaultWidth}}
                     // onChange={(event) => search(event.target.value)}
                 />
             </div>

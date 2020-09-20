@@ -4,12 +4,11 @@ import {theme} from "../theme";
 import {MuiThemeProvider} from "@material-ui/core/styles";
 import {Toolbar,AppBar,Grid,Button,Typography} from "@material-ui/core";
 import {Link} from "react-router-dom";
-import {teal} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
         position: "static",
-        backgroundColor: teal["700"]
+        backgroundColor: "#696969"
     },
     footerLinks: {
         padding: theme.spacing(1),
@@ -26,6 +25,9 @@ const useStyles = makeStyles((theme) => ({
     copyright: {
         padding: theme.spacing(1),
     },
+    logo:{
+        marginTop:theme.spacing(5)
+    }
 }));
 
 export const Footer = () => {
@@ -40,7 +42,7 @@ export const Footer = () => {
                             <Grid item xs={6}>
                                 <Grid container>
                                     <Grid item xs={4}></Grid>
-                                    <Grid item xs={4}>
+                                    <Grid item xs={4} className={classes.logo}>
                                         <Grid container>
                                             <Typography variant="h5" color="inherit" component={Link} to="/">
                                                 BOOKSKO
@@ -52,8 +54,8 @@ export const Footer = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <Grid container>
-                                    <Grid item xs={5}></Grid>
-                                    <Grid item xs={2}>
+                                    <Grid item xs={4}></Grid>
+                                    <Grid item xs={5}>
                                         <Grid container direction="column">
                                             <Button color="inherit" className={classes.community}>
                                                 コミュニティ一覧
@@ -63,7 +65,7 @@ export const Footer = () => {
                                             </Button>
                                         </Grid>
                                     </Grid>
-                                    <Grid item xs={5}></Grid>
+                                    <Grid item xs={3}></Grid>
                                 </Grid>
                             </Grid>
                         </Grid>

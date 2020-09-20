@@ -5,16 +5,21 @@ import Card from "@material-ui/core/Card";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    title:{
+    title: {
         paddingTop: theme.spacing(10),
         paddingBottom: theme.spacing(10)
     },
     outer: {
-        paddingBottom:theme.spacing(20)
+        paddingBottom: theme.spacing(20)
     },
     media: {
-        height: 250,
+        position:"relative",
+        paddingBottom: "100%"
     },
+    userName:{
+        paddingTop: theme.spacing(7),
+        paddingBottom: theme.spacing(3)
+    }
 }))
 
 export const Profile = () => {
@@ -51,7 +56,8 @@ export const Profile = () => {
         };
 
         getUserMetadata();
-    }, [getAccessTokenSilently, user]);
+        console.log(userMetadata);
+    }, [getAccessTokenSilently, user,userMetadata]);
     if (isLoading) {
         return <div>Loading ...</div>;
     }
@@ -66,7 +72,7 @@ export const Profile = () => {
                     マイページ
                 </Typography>
                 <Grid container direction="column">
-                    <Divider />
+                    <Divider/>
                 </Grid>
             </Grid>
 
@@ -79,15 +85,38 @@ export const Profile = () => {
                                 <Grid item xs={4}>
                                     <CardMedia className={classes.media} image={user.picture} title={user.name}/>
                                 </Grid>
-                                <CardContent>
-                                    <h2>{user.name}</h2>
-                                    <p>{user.email}</p>
-                                    {userMetadata ? (
-                                        <pre>{JSON.stringify(userMetadata, null, 2)}</pre>
-                                    ) : (
-                                        "No user metadata defined"
-                                    )}
-                                </CardContent>
+                                <Grid item xs={1}></Grid>
+                                <Grid item xs={7}>
+                                    <CardContent>
+                                        <Grid container className={classes.userName}>
+                                            <Grid item xs={3}>
+                                                <Typography variant="h6">
+                                                    ユーザー名
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={1}></Grid>
+                                            <Grid item xs={8}>
+                                                <Typography variant="h4">{user.nickname}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid container>
+                                            <Grid item xs={3}>
+                                                <Typography variant="h6">
+                                                    email
+                                                </Typography>
+                                            </Grid>
+                                            <Grid item xs={1}></Grid>
+                                            <Grid item xs={8}>
+                                                <Typography variant="h5">{user.email}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        {/*{userMetadata ? (*/}
+                                        {/*    <pre>{JSON.stringify(userMetadata, null, 2)}</pre>*/}
+                                        {/*) : (*/}
+                                        {/*    "No user metadata defined"*/}
+                                        {/*)}*/}
+                                    </CardContent>
+                                </Grid>
 
                             </Grid>
                         </CardActionArea>
