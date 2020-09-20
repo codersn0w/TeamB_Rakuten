@@ -35,3 +35,10 @@ SQLAlchemy-Utils==0.35.0
 Werkzeug==0.16.0  
 WTForms==2.2.1  
 zipp==0.6.0  
+flask_marshmallow
+flask_cors
+pymysql
+sqlalchemy-migrate
+flask-restful
+flask-migrate
+cryptography
