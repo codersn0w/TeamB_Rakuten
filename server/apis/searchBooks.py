@@ -28,7 +28,7 @@ class Search_Books_API():
         
         #include search info
         #query['elements'] = "count,page,first,last,title,author,publisherName,isbn,itemUrl,mediumImageUrl,booksGenreId,booksGenreName"
-        query['elements'] = "title, author, itemUrl, booksGenreID"
+        query['elements'] = "title,author,itemUrl,booksGenreID"
         return query
     
     def get_dict(self):
@@ -39,5 +39,9 @@ class Search_Books_API():
     def get(self):
         res=self.get_dict()
         return json.dumps(res, sort_keys = True, indent = 4)
+    def get_array(self):
+        res=self.get_dict()
+        res_list = [[val for val in item["Item"].values()] for item in res["Items"]]
+        return res_list
 
 
