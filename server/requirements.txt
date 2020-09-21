@@ -42,3 +42,4 @@ sqlalchemy-migrate
 flask-restful
 flask-migrate
 cryptography
+flask-seeder
