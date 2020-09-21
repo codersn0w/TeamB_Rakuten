@@ -14,6 +14,7 @@
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
+    "axios": "^0.20.0",
     "google-protobuf": "^3.11.4",
     "grpc-web": "1.0.7",
     "react": "^16.13.1",
