@@ -12,7 +12,9 @@ import {useAuth0} from "@auth0/auth0-react";
 
 const useStyles = makeStyles((theme) => ({
     header: {
+        opacity:0.8,
         height: 80,
+        backgroundColor:"transparent",
     },
     logo: {
         maxWidth: 60,
@@ -31,19 +33,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const Header = () => {
+export const HeaderForTop = () => {
     const classes = useStyles();
     const {isAuthenticated, isLoading} = useAuth0();
 
     return (
         <div>
             <MuiThemeProvider theme={theme}>
-                <AppBar position="static">
+                <AppBar position="relative">
                     <Toolbar className={classes.header}>
                         <Grid container justify={"flex-start"}>
                             <Grid item xs={2}>
                                 <Grid container justify="center">
-                                    <Typography variant="h5" component={Link} to="/">
+                                    <Typography variant="h5" color="inherit" component={Link} to="/">
                                         BOOKSKO
                                     </Typography>
                                 </Grid>
