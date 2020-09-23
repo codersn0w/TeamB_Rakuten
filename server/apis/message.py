@@ -9,7 +9,8 @@ class MessageListAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('sentence', required=True)
-        # self.reqparse.add_argument('state', required=True)
+        self.reqparse.add_argument('thread_id', required=True)
+        self.reqparse.add_argument('sender_id', required=True)
         super(MessageListAPI, self).__init__()
 
     def get(self):
@@ -21,7 +22,7 @@ class MessageListAPI(Resource):
 
     def post(self):
         args = self.reqparse.parse_args()
-        hoge = MessageModel(args.sentence)
+        hoge = MessageModel(args.sentence, args.thread_id, args.sender_id)
         db.session.add(hoge)
         db.session.commit()
         res = MessageSchema().dump(hoge).data
@@ -31,8 +32,9 @@ class MessageListAPI(Resource):
 class MessageAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('sentence')
-        # self.reqparse.add_argument('state')
+        self.reqparse.add_argument('sentence', required=True)
+        self.reqparse.add_argument('thread_id', required=True)
+        self.reqparse.add_argument('sender_id', required=True)
         super(MessageAPI, self).__init__()
 
     def get(self, id):

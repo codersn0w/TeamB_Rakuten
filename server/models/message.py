@@ -17,7 +17,7 @@ class MessageModel(db.Model):
     updateTime = db.Column(db.DateTime, nullable=False,
                            default=datetime.now, onupdate=datetime.now)
 
-    def __init__(self, name):
+    def __init__(self, sentence, thread_id, sender_id):
         # self.id = id
         self.sentence = sentence
         self.thread_id = thread_id
