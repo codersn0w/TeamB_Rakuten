@@ -10,10 +10,10 @@ class BookModel(db.Model):
     __table_args__ = {'extend_existing': True}
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     title = db.Column(db.String(255), nullable=False)
-    author = db.Column(db.String(10), nullable=False)
+    author = db.Column(db.String(255), nullable=False)
     #author_id = db.Column(db.Integer, nullable=True, db.ForeignKey('authors.id)
-    genre_id = db.Column(db.String(10), db.ForeignKey('genres.id'), nullable=False)
-    item_caption = db.Column(db.String(255), nullable=True)
+    genre_id = db.Column(db.String(10), nullable=False)
+    item_caption = db.Column(db.String(355), nullable=True)
     image_url = db.Column(db.String(255), nullable=True)
     item_url = db.Column(db.String(255), nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)

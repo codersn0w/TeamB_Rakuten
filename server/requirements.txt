@@ -43,3 +43,4 @@ flask-restful
 flask-migrate
 cryptography
 flask-seeder
+requests
