@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router-dom";
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
   name: string;
+  id: number;
   owner: string;
   img: string;
   kikan: number;
@@ -20,6 +21,7 @@ export default class RequestForm extends React.Component<Props, States> {
 
     this.state = {
       name: "書名",
+      id: -1,
       owner: "貸出者",
       img: "画像URL",
       quality: "商品の状態",
@@ -33,6 +35,7 @@ export default class RequestForm extends React.Component<Props, States> {
     setTimeout(() => {
       this.setState({
         name: "小説　疾風伝説　特攻の拓３",
+        id: 1,
         owner: "やさぐれ太郎",
         quality: "ほぼ新品",
         img:
@@ -65,6 +68,9 @@ export default class RequestForm extends React.Component<Props, States> {
     return (
       <main className="container-fluid">
         <h1>レンタルリクエストを送る</h1>
+        <h2>
+          <a href={"../../books/" + this.state.id}>{this.state.name}</a>
+        </h2>
         <div className="row">
           <img src={this.state.img} alt="" className="col-xs-6" />
           <div className="col-xs-6">
