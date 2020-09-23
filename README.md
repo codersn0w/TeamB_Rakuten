@@ -19,6 +19,8 @@ flask seed run (Seed実行(今のところgenreのみ))
 
 ## API
 
+### [URI一覧(app.py)](/server/app.py)
+
 ### Usage example of Thread API
 
 #### POST
