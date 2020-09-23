@@ -80,7 +80,7 @@ export default class LendingDetails extends React.Component<Props, States> {
 
   private createButton() {
     const USER_ID = 1;
-    if (this.state.requester_id == 1234) {
+    if (this.state.requester_id === 1234) {
       //ログインしている人が借りている側だったら
       if (this.state.state === "発送中")
         return (
@@ -97,7 +97,7 @@ export default class LendingDetails extends React.Component<Props, States> {
             返送通知
           </button>
         );
-    } else if (this.state.owner_id == USER_ID) {
+    } else if (this.state.owner_id === USER_ID) {
       //ログインしている人が貸している側だったら
       if (this.state.state === "発送待") {
         return (
