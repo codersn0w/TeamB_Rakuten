@@ -2,7 +2,7 @@ from flask_seeder import Seeder, Faker, generator
 from database import db
 
 # SQLAlchemy database model
-class Books(db.Model):
+class Book(db.Model):
   __tablename__ = 'books'
   __table_args__ = {'extend_existing': True}
   def __init__(self, title=None, author=None, genreId=None,itemCaption=None,mediumImageUrl=None, itemUrl=None ):
@@ -14,7 +14,7 @@ class Books(db.Model):
     self.itemUrl = itemUrl
 
 # All seeders inherit from Seeder
-class DemoSeeder(Seeder):
+class BookSeeder(Seeder):
 
   # run() will be called by Flask-Seeder
   def run(self):
