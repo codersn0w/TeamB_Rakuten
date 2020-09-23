@@ -9,10 +9,10 @@ import {LoginButton} from "./LoginButton";
 import {LogoutButton} from "./LogoutButton";
 import {SearchBox} from "./SearchBox";
 import {useAuth0} from "@auth0/auth0-react";
-import {NotificationIcon} from "./NotificationIcon";
 
 const useStyles = makeStyles((theme) => ({
     header: {
+        opacity:0.8,
         height: 80,
         backgroundColor:"transparent",
     },
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export const Header = () => {
+export const HeaderForTop = () => {
     const classes = useStyles();
     const {isAuthenticated, isLoading} = useAuth0();
 
@@ -45,7 +45,7 @@ export const Header = () => {
                         <Grid container justify={"flex-start"}>
                             <Grid item xs={2}>
                                 <Grid container justify="center">
-                                    <Typography variant="h5" component={Link} to="/">
+                                    <Typography variant="h5" color="inherit" component={Link} to="/">
                                         BOOKSKO
                                     </Typography>
                                 </Grid>
@@ -67,12 +67,7 @@ export const Header = () => {
                                     <React.Fragment>
                                         <Grid item xs={2}>
                                             <Link to="/profile">
-                                                <NotificationIcon />
-                                            </Link>
-                                        </Grid>
-                                        <Grid item xs={2}>
-                                            <Link to="/profile">
-                                                <Button>マイページ</Button>
+                                                <Button>profile</Button>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={2}>

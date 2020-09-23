@@ -11,7 +11,11 @@ const initialObject: CommunityType = {
 
 const useStyles = makeStyles(theme=>({
     communityList:{
-        marginTop: theme.spacing(6)
+        marginTop: theme.spacing(6),
+        paddingBottom: theme.spacing(8),
+    },
+    communityElement:{
+        paddingBottom: theme.spacing(3),
     }
 }))
 
@@ -34,7 +38,7 @@ export const CommunityList = () => {
                 <Grid item xs={10}>
                     <Grid container>
                     {communities && communities.map((community, index) => (
-                        <Grid item xs={4} key={index}>
+                        <Grid item xs={4} key={index} className={classes.communityElement}>
                             <Grid container justify="center">
                                 <Community name={community.name}></Community>
                             </Grid>
