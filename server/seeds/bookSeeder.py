@@ -5,13 +5,14 @@ from database import db
 class Book(db.Model):
   __tablename__ = 'books'
   __table_args__ = {'extend_existing': True}
-  def __init__(self, title=None, author=None, genreId=None,itemCaption=None,mediumImageUrl=None, itemUrl=None ):
+  def __init__(self, title, author, genreId,itemCaption=None,mediumImageUrl=None, itemUrl=None , image=None):
     self.title = title
     self.author = author
     self.genreId = genreId
     self.itemCaption = itemCaption
     self.mediumImageUrl = mediumImageUrl
     self.itemUrl = itemUrl
+    self.image = image
 
 # All seeders inherit from Seeder
 class BookSeeder(Seeder):

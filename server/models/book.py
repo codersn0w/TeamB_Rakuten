@@ -16,11 +16,16 @@ class BookModel(db.Model):
     item_caption = db.Column(db.String(255), nullable=True)
     image_url = db.Column(db.String(255), nullable=True)
     item_url = db.Column(db.String(255), nullable=True)
+    image = db.Column(db.LargeBinary, nullable=True)
 
-    def __init__(self, title, author):
+    def __init__(self, title, author, genre_id, item_caption=None, image_url=None, item_url=None, image=None):
         self.title = title
         self.author = author
         self.genre_id = genre_id
+        self.item_caption = item_caption
+        self.image_url = image_url
+        self.item_url = item_url
+        self.image = image
 
     def __repr__(self):
         return '<ThreadModel {}:{}:{}:{}>'.format(self.id, self.title, self.author, self.genre_id)
@@ -29,4 +34,4 @@ class BookModel(db.Model):
 class BookSchema(ma.Schema):
     class Meta:
      # 欲しいデータを記述
-        fields = ("id", "title", "author", "genre_id", "item_caption", "image_url", "item_url")
+        fields = ("id", "title", "author", "genre_id", "item_caption", "image_url", "item_url", "image")

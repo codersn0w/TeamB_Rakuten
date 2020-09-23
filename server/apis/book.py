@@ -10,6 +10,10 @@ class BookListAPI(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('title', required=True)
         self.reqparse.add_argument('author', required=True)
+        self.reqparse.add_argument('item_caption')
+        self.reqparse.add_argunment('image_url')
+        self.reqparse.add_argument('item_url')
+        self.reqparse.add_argument('image')
         super(BookListAPI, self).__init__()
 
     def get(self):
@@ -19,7 +23,7 @@ class BookListAPI(Resource):
 
     def post(self):
         args = self.reqparse.parse_args()
-        book = BookModel(args.title, args.author)
+        book = BookModel(args.title, args.author, args.item_caption, args.image_url, args.item_url, args.image)
         db.session.add(book)
         db.session.commit()
         res = BookSchema().dump(book).data
@@ -31,6 +35,10 @@ class BookAPI(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('title')
         self.reqparse.add_argument('author')
+        self.reqparse.add_argument('item_caption')
+        self.reqparse.add_argunment('image_url')
+        self.reqparse.add_argument('item_url')
+        self.reqparse.add_argument('image')
         super(BookAPI, self).__init__()
 
     def get(self, id):
