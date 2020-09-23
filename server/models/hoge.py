@@ -3,7 +3,7 @@ from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
 from sqlalchemy_utils import *
 # from sqlalchemy_utils import UUIDType
-from ..database import db
+from database import db
 import uuid
 
 ma = Marshmallow()

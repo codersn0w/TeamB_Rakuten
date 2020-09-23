@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
-from ..models.bookrental import BookRentalModel, BookRentalSchema
-from ..database import db
+from models.bookrental import BookRentalModel, BookRentalSchema
+from database import db
 import json
 
 

@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
-from ..models.hoge import HogeModel, HogeSchema
-from ..database import db
+from models.hoge import HogeModel, HogeSchema
+from database import db
 import json
 
 

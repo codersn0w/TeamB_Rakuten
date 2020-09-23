@@ -5,7 +5,7 @@ class DevelopmentConfig:
         **{
             'user': 'root',
             'password': 'hoge',
-            'host': '192.168.33.10:3306',
+            'host': 'db',
             'database': 'hoge',
         })
     SQLALCHEMY_TRACK_MODIFICATIONS = False
