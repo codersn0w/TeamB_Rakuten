@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         maxHeight: 500,
     },
     messageTop: {
-        paddingBottom: theme.spacing(2),
+        paddingBottom: theme.spacing(4),
     },
     button: {
         width: 240,
@@ -56,11 +56,14 @@ export const Hero = () => {
                 <Grid item xs={4}>
 
                     <Typography variant="h4" className={classes.messageTop}>
-                        あの本を語り合おう
+                        本を語ろう
                     </Typography>
 
                     <Typography variant="body1">
-                        CSS無理CSS無理CSS無理CSS無理CSS無理CSS無理CSS無理
+                        コミュニティを通して本の理解を深めませんか
+                    </Typography>
+                    <Typography variant="body1">
+                        新しい解釈や知識に出会えるかもしれません
                     </Typography>
 
                 </Grid>

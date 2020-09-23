@@ -14,7 +14,6 @@ import {Footer} from "./components/Footer";
 import NotificationComponent from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
 import {Typography} from "@material-ui/core";
-import {HeaderForTop} from "./components/HeaderForTop";
 
 const NotFound = () => <Typography>404.. This page is not found!</Typography>
 
@@ -28,7 +27,7 @@ export const App = () => {
         <Router>
             <div>
                 <Switch>
-                    <Route exact path="/" component={HeaderForTop}/>
+                    {/*<Route exact path="/" component={HeaderForTop}/>*/}
                     <Route component={Header}></Route>
                 </Switch>
                 <Switch>
