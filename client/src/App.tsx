@@ -5,7 +5,7 @@ import { Top } from "./components/Top";
 import { Profile } from "./components/Profile";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
-import SearchResult from "./components/SearchResult";
+import {SearchResult} from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
 import Genre from "./components/Genre";
 import Thread from "./components/Thread";
@@ -41,7 +41,7 @@ export const App = () => {
             exact
             path="/search/:query"
             component={SearchResult}
-            render={(props) => <SearchResult {...props} />}
+            // render={(props) => <SearchResult {...props} />}
           />
           <Route
             exact
