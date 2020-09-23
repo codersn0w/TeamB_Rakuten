@@ -9,7 +9,7 @@ import { SearchResult } from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
 import Genre from "./components/Genre";
 import { Thread } from "./components/Thread";
-import RequestForm from "./components/RequestForm";
+import { RequestForm } from "./components/RequestForm";
 import { Footer } from "./components/Footer";
 import { NotificationComponent } from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
@@ -75,12 +75,13 @@ export const App = () => {
             component={NotificationComponent}
             render={(props) => <NotificationComponent {...props} />}
           /> */}
-          <Route
+          <Route exact path="/request/create/:id" component={RequestForm} />
+          {/* <Route
             exact
             path="/request/create/:id"
             component={RequestForm}
             render={(props) => <RequestForm {...props} />}
-          />
+          /> */}
           <Route
             exact
             path="/request/view/:id"
