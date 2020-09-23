@@ -4,6 +4,7 @@ from database import init_db
 #from apis.hoge import HogeListAPI, HogeAPI
 from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, ThreadAPI
+from apis.message import MessageListAPI, MessageAPI
 from config import Config
 
 
@@ -21,6 +22,8 @@ def create_app():
     api.add_resource(GenreAPI, '/genres/<id>')
     api.add_resource(ThreadListAPI, '/threads')
     api.add_resource(ThreadAPI, '/threads/<id>')
+    api.add_resource(MessageListAPI, '/messages')
+    api.add_resource(MessageAPI, '/messages/<id>')
 
     return app
 
