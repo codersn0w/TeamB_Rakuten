@@ -45,3 +45,4 @@ class Search_Books_API():
         res=self.get_dict()
         res_list = [[val for val in item["Item"].values()] for item in res["Items"]]
         return res_list
+
