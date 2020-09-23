@@ -14,7 +14,7 @@ import { Footer } from "./components/Footer";
 import { NotificationComponent } from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
 import { Typography } from "@material-ui/core";
-import LendingList from "./components/LendingList";
+import { LendingList } from "./components/LendingList";
 import LendingDetails from "./components/LendingDetails";
 import Followers from "./components/Followers";
 import BookRegister from "./components/BookRegister";
@@ -88,12 +88,13 @@ export const App = () => {
             component={RequestDetails}
             render={(props) => <RequestDetails {...props} />}
           />
-          <Route
+          <Route exact path="/lending" component={LendingList} />
+          {/* <Route
             exact
             path="/lending"
             component={LendingList}
             render={(props) => <LendingList {...props} />}
-          />
+          /> */}
           <Route
             exact
             path="/lending/:id"
