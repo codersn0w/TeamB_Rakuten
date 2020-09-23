@@ -32,9 +32,9 @@ class MessageListAPI(Resource):
 class MessageAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('sentence', required=True)
-        self.reqparse.add_argument('thread_id', required=True)
-        self.reqparse.add_argument('sender_id', required=True)
+        self.reqparse.add_argument('sentence')
+        self.reqparse.add_argument('thread_id')
+        self.reqparse.add_argument('sender_id')
         super(MessageAPI, self).__init__()
 
     def get(self, id):

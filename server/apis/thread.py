@@ -34,8 +34,8 @@ class ThreadAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name')
-        self.reqparse.add_argument('genre_id', required=True)
-        self.reqparse.add_argument('book_id', required=True)
+        self.reqparse.add_argument('genre_id')
+        self.reqparse.add_argument('book_id')
         # self.reqparse.add_argument('state')
         super(ThreadAPI, self).__init__()
 
