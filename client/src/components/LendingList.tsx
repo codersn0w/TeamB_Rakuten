@@ -4,7 +4,7 @@ import { RouteComponentProps } from "react-router-dom";
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
   lending: Array<{
-    id: number;
+    id: number; //貸す本エンティティのIDのことです
     name: string;
     img: string;
     requester: string;
@@ -14,7 +14,7 @@ interface States {
     deadline_date: string;
   }>;
   borrowing: Array<{
-    id: number;
+    id: number; //貸す本エンティティのIDのことです
     name: string;
     img: string;
     owner: string;
@@ -23,8 +23,8 @@ interface States {
     start_date: string;
     deadline_date: string;
   }>;
-  requests: Array<{
-    id: number;
+  requests_sent: Array<{
+    id: number; //RequestエンティティのIDのことです
     name: string;
     img: string;
     owner: string;
@@ -39,7 +39,7 @@ export default class LendingList extends React.Component<Props, States> {
     this.state = {
       lending: [],
       borrowing: [],
-      requests: [],
+      requests_sent: [],
     };
 
     //後でAPI呼び出しに置き換えます
@@ -71,7 +71,7 @@ export default class LendingList extends React.Component<Props, States> {
             deadline_date: "2020-09-25",
           },
         ],
-        requests: [
+        requests_sent: [
           {
             id: 3,
             name: "小説　疾風伝説　特攻の拓2",
@@ -90,7 +90,7 @@ export default class LendingList extends React.Component<Props, States> {
     alert(id + "をキャンセル");
     //ここでリクエスト削除APIを呼び出し
     setTimeout(() => {
-      this.setState({ requests: [] });
+      this.setState({ requests_sent: [] });
     }, 500);
   }
 
@@ -135,7 +135,7 @@ export default class LendingList extends React.Component<Props, States> {
           </div>
         ))}
         <h2>承認待ちの本</h2>
-        {this.state.requests.map((book, index) => (
+        {this.state.requests_sent.map((book, index) => (
           <div className="row">
             <img src={book.img} alt="" className="col-xs-6" />
             <div className="col-xs-6">
