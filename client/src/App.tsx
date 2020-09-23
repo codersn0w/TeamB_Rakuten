@@ -5,13 +5,13 @@ import { Top } from "./components/Top";
 import { Profile } from "./components/Profile";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
-import { SearchResult } from "./components/SearchResult";
+import {SearchResult} from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
 import Genre from "./components/Genre";
 import Thread from "./components/Thread";
 import RequestForm from "./components/RequestForm";
 import { Footer } from "./components/Footer";
-import { NotificationComponent } from "./components/Notification";
+import NotificationComponent from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
 import { Typography } from "@material-ui/core";
 import LendingList from "./components/LendingList";
@@ -67,13 +67,12 @@ export const App = () => {
             component={Thread}
             render={(props) => <Thread {...props} />}
           />
-          <Route exact path="/notification" component={NotificationComponent} />
-          {/* <Route
+          <Route
             // exact
             path="/notification"
             component={NotificationComponent}
             render={(props) => <NotificationComponent {...props} />}
-          /> */}
+          />
           <Route
             exact
             path="/request/create/:id"
