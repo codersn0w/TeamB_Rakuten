@@ -65,7 +65,7 @@ export const Header = () => {
                                     }
                                     {(isAuthenticated || isLoading) &&
                                     <React.Fragment>
-                                        <Grid item xs={2}>
+                                        <Grid item xs={1}>
                                             <Link to="/notification">
                                                 <NotificationIcon />
                                             </Link>
