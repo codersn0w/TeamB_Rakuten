@@ -8,7 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { SearchResult } from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
 import Genre from "./components/Genre";
-import Thread from "./components/Thread";
+import { Thread } from "./components/Thread";
 import RequestForm from "./components/RequestForm";
 import { Footer } from "./components/Footer";
 import { NotificationComponent } from "./components/Notification";
@@ -61,12 +61,13 @@ export const App = () => {
             component={Genre}
             render={(props) => <Genre {...props} />}
           />
-          <Route
+          <Route exact path="/threads/:id" component={Thread} />
+          {/* <Route
             exact
             path="/threads/:id"
             component={Thread}
             render={(props) => <Thread {...props} />}
-          />
+          /> */}
           <Route exact path="/notification" component={NotificationComponent} />
           {/* <Route
             // exact
