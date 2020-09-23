@@ -7,6 +7,7 @@ interface States {
   img: string;
   author: string;
   genre: string;
+  genre_id: number;
   star: string;
   rentals: Array<{
     owner: string;
@@ -38,6 +39,7 @@ export default class BookDetail extends React.Component<Props, States> {
       img: "",
       author: "",
       genre: "",
+      genre_id: -1,
       star: "",
       rentals: [],
       reviews: [],
@@ -53,6 +55,7 @@ export default class BookDetail extends React.Component<Props, States> {
           "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg",
         author: "すごい太郎",
         genre: "小説",
+        genre_id: 1,
         star: "2.5",
       });
     }, 100);
@@ -133,7 +136,15 @@ export default class BookDetail extends React.Component<Props, States> {
           <div className="col-xs-8">
             <h1 className="h1">{this.state.name}</h1>
             <p>著者 {this.state.author}</p>
-            <p>ジャンル {this.state.genre}</p>
+            <p>
+              ジャンル
+              <a
+                href={"../genre/" + this.state.genre_id}
+                className="btn btn-primary"
+              >
+                {this.state.genre}
+              </a>
+            </p>
             <p>★ {this.state.star}</p>
           </div>
         </div>
