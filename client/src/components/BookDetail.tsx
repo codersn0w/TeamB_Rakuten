@@ -14,6 +14,7 @@ interface States {
     kikan: string;
     point: string;
     img: string;
+    id: number;
   }>;
   reviews: Array<{
     author: string;
@@ -66,6 +67,7 @@ export default class BookDetail extends React.Component<Props, States> {
             point: "300",
             img:
               "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg",
+            id: 1,
           },
         ],
       });
@@ -146,6 +148,12 @@ export default class BookDetail extends React.Component<Props, States> {
                   <p>状態　{book.quality}</p>
                   <p>消費P　{book.point}P</p>
                   <p>期間　{book.kikan}</p>
+                  <a
+                    className="btn btn-primary btn-lg"
+                    href={"../request/create/" + book.id}
+                  >
+                    詳細
+                  </a>
                 </div>
               </div>
             </li>
