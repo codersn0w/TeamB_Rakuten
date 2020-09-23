@@ -58,7 +58,7 @@ export default class Followers extends React.Component<Props, States> {
               <p className="col">{item.desc}</p>
               <p className="col">{item.direction}</p>
               <div className="col">
-                {item.direction == "フォロワ" ? (
+                {item.direction === "フォロワ" ? (
                   <button
                     onClick={this.follow.bind(this, item.id)}
                     className="btn btn-primary"
