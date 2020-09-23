@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundImage: `url(${bookImage})`,
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
-        height:"600px",
+        height:"800px",
         marginBottom: theme.spacing(6),
     },
     screen: {
