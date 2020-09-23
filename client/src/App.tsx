@@ -16,7 +16,7 @@ import RequestDetails from "./components/RequestDetails";
 import { Typography } from "@material-ui/core";
 import { LendingList } from "./components/LendingList";
 import { LendingDetails } from "./components/LendingDetails";
-import Followers from "./components/Followers";
+import { Followers } from "./components/Followers";
 import BookRegister from "./components/BookRegister";
 
 const NotFound = () => <Typography>404.. This page is not found!</Typography>;
@@ -102,12 +102,13 @@ export const App = () => {
             component={LendingDetails}
             render={(props) => <LendingDetails {...props} />}
           /> */}
-          <Route
+          <Route exact path="/followers" component={Followers} />
+          {/* <Route
             exact
             path="/followers"
             component={Followers}
             render={(props) => <Followers {...props} />}
-          />
+          /> */}
           <Route component={NotFound}></Route>
         </Switch>
         <Footer></Footer>
