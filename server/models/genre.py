@@ -1,11 +1,8 @@
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-<<<<<<< HEAD
 from ..database import db
-=======
-from database import db
->>>>>>> 71e61aeb137c47e62e86eecba08f832820ec8525
+
 
 ma = Marshmallow()
 

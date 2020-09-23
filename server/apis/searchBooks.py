@@ -28,8 +28,14 @@ class Search_Books_API():
         query['sort'] = self.sort
         query['hits'] = self.HITS
         query['page'] = self.page
+
+
+<< << << < HEAD
         # include search info
-        #query['elements'] = "count,page,first,last,title,author,publisherName,isbn,itemUrl,mediumImageUrl,booksGenreId,booksGenreName"
+== == == =
+        # include search info
+>>>>>> > 71e61aeb137c47e62e86eecba08f832820ec8525
+        # query['elements'] = "count,page,first,last,title,author,publisherName,isbn,itemUrl,mediumImageUrl,booksGenreId,booksGenreName"
         query['elements'] = "title,author,booksGenreId,itemCaption,mediumImageUrl,itemUrl"
         return query
 
@@ -39,8 +45,8 @@ class Search_Books_API():
         return res.json()
 
     def get(self):
-        res = self.get_dict()
-        return json.dumps(res, sort_keys=True, indent=4)
+        res=self.get_dict()
+        return json.dumps(res, sort_keys = True, indent = 4)
 
     def get_array(self):
         res = self.get_dict()

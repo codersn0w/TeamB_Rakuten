@@ -11,15 +11,13 @@ class MessageListAPI(Resource):
         self.reqparse.add_argument('sentence', required=True)
         self.reqparse.add_argument('thread_id', required=True)
         self.reqparse.add_argument('sender_id', required=True)
-
         super(MessageListAPI, self).__init__()
 
     def get(self):
         results = MessageModel.query.all()
         jsonData = MessageSchema(many=True).dump(results).data
-
-        # jsonData = json.dumps(results)
-
+        #jsonData = json.dumps(results)
+        # print(results)
         return jsonify({'items': jsonData})
 
     def post(self):

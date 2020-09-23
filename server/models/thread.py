@@ -32,9 +32,12 @@ class ThreadModel(db.Model):
 
 class ThreadSchema(ma.Schema):
     class Meta:
-     # 欲しいデータを記述
+
+        # 欲しいデータを記述
+
         fields = ("id", "name", "genre_id", "book_id",
                   "createTime", "updateTime")
 
-    createTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
-    updateTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
+
+createTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')
+updateTime = fields.DateTime('%Y-%m-%dT%H:%M:%S')

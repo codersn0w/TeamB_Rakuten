@@ -5,6 +5,9 @@ from ..database import db
 from ..models.genre import GenreModel, GenreSchema
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
+from models.genre import GenreModel, GenreSchema
+from database import db
+import json
 
 
 class GenreListAPI(Resource):

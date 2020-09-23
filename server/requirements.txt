@@ -48,4 +48,3 @@ python-dotenv
 flask-migrate
 cryptography
 flask-seeder
-
