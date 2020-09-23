@@ -70,8 +70,7 @@ export const SearchBox: React.FC<Props> = (props: Props) => {
                 <SearchIcon/>
             </div>
             <form onSubmit={() => {
-                history.push("/search/" + query);
-                setQuery("");
+                history.push(`/search/${query}`);
             }}>
                 <Input
                     placeholder={props.placeholder}
