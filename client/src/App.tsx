@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer";
 import NotificationComponent from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
 import LendingList from "./components/LendingList";
+import LendingDetails from "./components/LendingDetails";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -74,6 +75,12 @@ export const App = () => {
           path="/lending"
           component={LendingList}
           render={(props) => <LendingList {...props} />}
+        />
+        <Route
+          exact
+          path="/lending/:id"
+          component={LendingDetails}
+          render={(props) => <LendingDetails {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
