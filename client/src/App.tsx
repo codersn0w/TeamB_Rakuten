@@ -13,6 +13,7 @@ import RequestForm from "./components/RequestForm";
 import { Footer } from "./components/Footer";
 import NotificationComponent from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
+import LendingList from "./components/LendingList";
 
 export const App = () => {
   const { isLoading } = useAuth0();
@@ -67,6 +68,12 @@ export const App = () => {
           path="/request/view/:id"
           component={RequestDetails}
           render={(props) => <RequestDetails {...props} />}
+        />
+        <Route
+          exact
+          path="/lending"
+          component={LendingList}
+          render={(props) => <LendingList {...props} />}
         />
         {/*<Route exact path="/Games" component={Games} />*/}
         {/*<Route*/}
