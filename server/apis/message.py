@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
-from ..models.message import MessageModel, MessageSchema
-from ..database import db
+from models.message import MessageModel, MessageSchema
+from database import db
 import json
 
 
@@ -9,19 +9,22 @@ class MessageListAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('sentence', required=True)
-        # self.reqparse.add_argument('state', required=True)
+        self.reqparse.add_argument('thread_id', required=True)
+        self.reqparse.add_argument('sender_id', required=True)
+
         super(MessageListAPI, self).__init__()
 
     def get(self):
         results = MessageModel.query.all()
         jsonData = MessageSchema(many=True).dump(results).data
-        #jsonData = json.dumps(results)
-        # print(results)
+
+        # jsonData = json.dumps(results)
+
         return jsonify({'items': jsonData})
 
     def post(self):
         args = self.reqparse.parse_args()
-        hoge = MessageModel(args.sentence)
+        hoge = MessageModel(args.sentence, args.thread_id, args.sender_id)
         db.session.add(hoge)
         db.session.commit()
         res = MessageSchema().dump(hoge).data
@@ -32,7 +35,8 @@ class MessageAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('sentence')
-        # self.reqparse.add_argument('state')
+        self.reqparse.add_argument('thread_id')
+        self.reqparse.add_argument('sender_id')
         super(MessageAPI, self).__init__()
 
     def get(self, id):

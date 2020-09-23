@@ -1,7 +1,7 @@
 from datetime import datetime
 from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
-from ..database import db
+from database import db
 
 ma = Marshmallow()
 
@@ -20,7 +20,7 @@ class ThreadModel(db.Model):
                            default=datetime.now, onupdate=datetime.now)
     message = db.relationship("MessageModel")
 
-    def __init__(self, name):
+    def __init__(self, name, genre_id, book_id):
         # self.id = id
         self.name = name
         self.genre_id = genre_id

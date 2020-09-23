@@ -1,7 +1,7 @@
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
-from ..models.thread import ThreadModel, ThreadSchema
-from ..database import db
+from models.thread import ThreadModel, ThreadSchema
+from database import db
 import json
 
 
@@ -9,6 +9,8 @@ class ThreadListAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name', required=True)
+        self.reqparse.add_argument('genre_id', required=True)
+        self.reqparse.add_argument('book_id', required=True)
         # self.reqparse.add_argument('state', required=True)
         super(ThreadListAPI, self).__init__()
 
@@ -21,7 +23,7 @@ class ThreadListAPI(Resource):
 
     def post(self):
         args = self.reqparse.parse_args()
-        hoge = ThreadModel(args.name)
+        hoge = ThreadModel(args.name, args.genre_id, args.book_id)
         db.session.add(hoge)
         db.session.commit()
         res = ThreadSchema().dump(hoge).data
@@ -32,6 +34,8 @@ class ThreadAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name')
+        self.reqparse.add_argument('genre_id')
+        self.reqparse.add_argument('book_id')
         # self.reqparse.add_argument('state')
         super(ThreadAPI, self).__init__()
 
