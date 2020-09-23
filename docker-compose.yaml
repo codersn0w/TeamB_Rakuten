@@ -11,6 +11,9 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=hoge
     tty: true
+    command: --innodb-use-native-aio=0 # 追加！
+    networks:
+      - booksko
 
   server:
     build: ./server
@@ -24,14 +27,22 @@ services:
       FLASK_APP: run.py
       FLASK_ENV: development
     command: flask run -h 0.0.0.0
+    networks:
+      - booksko
 
   client:
-    command: /client/client.sh
+    command: yarn start
     build:
       context: ./client
     volumes:
       - ./client:/client
-      - /client/node_modules
+#      - /client/node_modules
     ports:
       - "3000:3000"
     tty: true
+    networks:
+      - booksko
+
+networks:
+  booksko:
+    driver: bridge

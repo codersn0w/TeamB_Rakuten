@@ -6,14 +6,15 @@ class Search_Books_API():
     DEV_ID = "1014208003770171209"
     AFF_ID = "1d0d8e01.0c225899.1d0d8e02.e43712a3"
     BASE_URI = "https://app.rakuten.co.jp/services/api/BooksBook/Search/20170404?"
-    HITS = 10
+    HITS = 30
 
-    def __init__(self, keyword, title=None, author=None, genreID=None, sort=None):
+    def __init__(self, keyword=None, title=None, author=None, genreId=None, sort=None, page=None):
         self.keyword = keyword
         self.title = title
         self.author = author
-        self.genreID = genreID
+        self.genreId = genreId
         self.sort = sort
+        self.page = page
 
     def create_query(self):
         query = {}
@@ -22,13 +23,13 @@ class Search_Books_API():
         query['affiliateId'] = self.AFF_ID
         query['title'] = self.title
         query['author'] = self.author
-        query['booksGenreId'] = self.genreID
+        query['booksGenreId'] = self.genreId
         query['sort'] = self.sort
         query['hits'] = self.HITS
-        
+        query['page'] = self.page
         #include search info
         #query['elements'] = "count,page,first,last,title,author,publisherName,isbn,itemUrl,mediumImageUrl,booksGenreId,booksGenreName"
-        query['elements'] = "title,author,itemUrl,booksGenreID"
+        query['elements'] = "title,author,booksGenreId,itemCaption,mediumImageUrl,itemUrl"
         return query
     
     def get_dict(self):
@@ -39,9 +40,8 @@ class Search_Books_API():
     def get(self):
         res=self.get_dict()
         return json.dumps(res, sort_keys = True, indent = 4)
+
     def get_array(self):
         res=self.get_dict()
         res_list = [[val for val in item["Item"].values()] for item in res["Items"]]
         return res_list
-
-

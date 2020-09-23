@@ -46,5 +46,10 @@ Flask-RESTful
 Flask-SQLAlchemy-Session
 python-dotenv
 flask-migrate
+<<<<<<< HEAD
 gunicorn
 # sqlalchemy_utils
+=======
+cryptography
+flask-seeder
+>>>>>>> 3420662470103c867458386570b96b83e2a6b86a
