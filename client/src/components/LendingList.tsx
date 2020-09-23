@@ -4,6 +4,7 @@ import { RouteComponentProps } from "react-router-dom";
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
   lending: Array<{
+    id: number;
     name: string;
     img: string;
     requester: string;
@@ -13,6 +14,7 @@ interface States {
     deadline_date: string;
   }>;
   borrowing: Array<{
+    id: number;
     name: string;
     img: string;
     owner: string;
@@ -20,6 +22,14 @@ interface States {
     current_days: number;
     start_date: string;
     deadline_date: string;
+  }>;
+  requests: Array<{
+    id: number;
+    name: string;
+    img: string;
+    owner: string;
+    days: number;
+    date: string;
   }>;
 }
 export default class LendingList extends React.Component<Props, States> {
@@ -29,6 +39,7 @@ export default class LendingList extends React.Component<Props, States> {
     this.state = {
       lending: [],
       borrowing: [],
+      requests: [],
     };
 
     //後でAPI呼び出しに置き換えます
@@ -36,6 +47,7 @@ export default class LendingList extends React.Component<Props, States> {
       this.setState({
         lending: [
           {
+            id: 0,
             name: "小説　疾風伝説　特攻の拓３",
             img:
               "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg",
@@ -48,6 +60,7 @@ export default class LendingList extends React.Component<Props, States> {
         ],
         borrowing: [
           {
+            id: 1,
             name: "小説　疾風伝説　特攻の拓2",
             img:
               "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg",
@@ -58,14 +71,34 @@ export default class LendingList extends React.Component<Props, States> {
             deadline_date: "2020-09-25",
           },
         ],
+        requests: [
+          {
+            id: 3,
+            name: "小説　疾風伝説　特攻の拓2",
+            img:
+              "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg",
+            owner: "山本",
+            days: 10,
+            date: "2020-09-15",
+          },
+        ],
       });
     }, 100);
+  }
+
+  private cancel(id: number): void {
+    alert(id + "をキャンセル");
+    //ここでリクエスト削除APIを呼び出し
+    setTimeout(() => {
+      this.setState({ requests: [] });
+    }, 500);
   }
 
   render() {
     return (
       <main className="container-fluid">
-        <h1>貸出一覧</h1>
+        <h1>やりとり中の本</h1>
+        <h2>貸出した本</h2>
         {this.state.lending.map((book, index) => (
           <div className="row">
             <img src={book.img} alt="" className="col-xs-6" />
@@ -77,6 +110,45 @@ export default class LendingList extends React.Component<Props, States> {
               </p>
               <p>貸出開始 {book.start_date}</p>
               <p>貸出期限 {book.deadline_date}</p>
+              <a href={"/lending/" + book.id} className="btn btn-primary">
+                詳細
+              </a>
+            </div>
+          </div>
+        ))}
+        <h2>借りた本</h2>
+        {this.state.borrowing.map((book, index) => (
+          <div className="row">
+            <img src={book.img} alt="" className="col-xs-6" />
+            <div className="col-xs-6">
+              <p>{book.name}</p>
+              <p>所有者 {book.owner}</p>
+              <p>
+                借りる日数 {book.current_days}/{book.max_days}
+              </p>
+              <p>貸出開始 {book.start_date}</p>
+              <p>貸出期限 {book.deadline_date}</p>
+              <a href={"/lending/" + book.id} className="btn btn-primary">
+                詳細
+              </a>
+            </div>
+          </div>
+        ))}
+        <h2>承認待ちの本</h2>
+        {this.state.requests.map((book, index) => (
+          <div className="row">
+            <img src={book.img} alt="" className="col-xs-6" />
+            <div className="col-xs-6">
+              <p>{book.name}</p>
+              <p>所有者 {book.owner}</p>
+              <p>借りる日数 {book.days}</p>
+              <p>リクエスト日 {book.date}</p>
+              <button
+                onClick={this.cancel.bind(this, book.id)}
+                className="btn btn-danger"
+              >
+                キャンセル
+              </button>
             </div>
           </div>
         ))}
