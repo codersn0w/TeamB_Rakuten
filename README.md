@@ -74,3 +74,17 @@ curl http://localhost:5000/message/1
 ```
 curl -X DELETE http://localhost:5000/message/1
 ```
+
+
+### Usage example of Notification API
+```
+curl -X POST http://localhost:5000/notifications   -H "Content-Type:application/json"   -d "{\"user_id\":\"hoge\",\"desc\":\"This is Alert\",\"type\":\"wtf\",\"img\":\"imgimg\"}"
+
+curl -X PUT http://localhost:5000/notification/1   -H "Content-Type:application/json"   -d "{\"user_id\":\"hoge\",\"desc\":\"This is Alert_edited\",\"type\":\"wtf\",\"img\":\"imgimg\"}"
+
+curl http://localhost:5000/notifications
+
+curl http://localhost:5000/notification/1
+
+curl -X DELETE http://localhost:5000/notification/1
+```

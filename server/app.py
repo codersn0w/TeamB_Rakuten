@@ -5,6 +5,7 @@ from database import init_db
 from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, ThreadAPI
 from apis.message import MessageListAPI, MessageAPI
+from apis.notification import NotificationListAPI, NotificationAPI
 from apis.book import BookListAPI, BookAPI
 from config import Config
 
@@ -25,6 +26,8 @@ def create_app():
     api.add_resource(ThreadAPI, '/thread/<id>')
     api.add_resource(MessageListAPI, '/messages')
     api.add_resource(MessageAPI, '/message/<id>')
+    api.add_resource(NotificationListAPI, '/notifications')
+    api.add_resource(NotificationAPI, '/notification/<id>')
 
     return app
 
