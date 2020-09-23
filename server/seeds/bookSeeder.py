@@ -27,8 +27,8 @@ class BookSeeder(Seeder):
         genre_id = "001"+ format(idx, '03')
         percent = idx*100//28
         print(format(percent, "03") + "%")
-        for page in range(1, 100):
-            search_books = Search_Books_API(genreId = genre_id, page = page)
+        for page_num in range(1, 100):
+            search_books = Search_Books_API(genreId = genre_id, page = page_num)
             bookList = search_books.get_dict()
             if("Items" in bookList):
                 for item in bookList["Items"]:
