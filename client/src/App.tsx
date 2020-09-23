@@ -7,9 +7,9 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SearchResult } from "./components/SearchResult";
 import BookDetail from "./components/BookDetail";
-import Genre from "./components/Genre";
 import { Thread } from "./components/Thread";
 import { RequestForm } from "./components/RequestForm";
+import {Genre} from "./components/Genre";
 import { Footer } from "./components/Footer";
 import { NotificationComponent } from "./components/Notification";
 import RequestDetails from "./components/RequestDetails";
@@ -57,9 +57,9 @@ export const App = () => {
           />
           <Route
             exact
-            path="/genre/:id"
+            path="/genres/:id"
             component={Genre}
-            render={(props) => <Genre {...props} />}
+            // render={(props) => <Genre {...props} />}
           />
           <Route exact path="/threads/:id" component={Thread} />
           {/* <Route
@@ -78,13 +78,13 @@ export const App = () => {
           <Route exact path="/request/create/:id" component={RequestForm} />
           {/* <Route
             exact
-            path="/request/create/:id"
+            path="/requests/create/:id"
             component={RequestForm}
             render={(props) => <RequestForm {...props} />}
           /> */}
           <Route
             exact
-            path="/request/view/:id"
+            path="/requests/view/:id"
             component={RequestDetails}
             render={(props) => <RequestDetails {...props} />}
           />

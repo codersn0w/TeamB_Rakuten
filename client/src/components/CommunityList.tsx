@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Community} from "./Community";
+import {CommunityCard} from "./CommunityCard";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
@@ -42,9 +42,9 @@ export const CommunityList = () => {
                     {communities && communities.map((community, index) => (
 
                         <Grid item xs={4} key={index} className={classes.communityElement}>
-                            <Link to={`/genre/${community.id}`}>
+                            <Link to={`/genres/${community.id}`}>
                             <Grid container justify="center">
-                                <Community name={community.name}></Community>
+                                <CommunityCard name={community.name}></CommunityCard>
                             </Grid>
                                 </Link>
                         </Grid>

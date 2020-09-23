@@ -17,7 +17,7 @@ type Props = {
     name:string
 }
 
-export const Community:React.FC<Props> = (props) => {
+export const CommunityCard:React.FC<Props> = (props) => {
     const classes = useStyles();
     return (
         <React.Fragment>
