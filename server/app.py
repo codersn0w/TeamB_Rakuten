@@ -6,6 +6,7 @@ from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, ThreadAPI
 from apis.message import MessageListAPI, MessageAPI
 from apis.notification import NotificationListAPI, NotificationAPI
+from apis.follow import FollowListAPI, FollowAPI
 from apis.book import BookListAPI, BookAPI
 from config import Config
 
@@ -28,6 +29,8 @@ def create_app():
     api.add_resource(MessageAPI, '/message/<id>')
     api.add_resource(NotificationListAPI, '/notifications')
     api.add_resource(NotificationAPI, '/notification/<id>')
+    api.add_resource(FollowListAPI, '/follows')
+    api.add_resource(FollowAPI, '/follow/<id>')
 
     return app
 

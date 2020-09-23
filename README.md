@@ -88,3 +88,17 @@ curl http://localhost:5000/notification/1
 
 curl -X DELETE http://localhost:5000/notification/1
 ```
+
+
+### Usage example of Follow API
+```
+curl -X POST http://localhost:5000/follows   -H "Content-Type:application/json"   -d "{\"from_id\":\"from_user_id\",\"to_id\":\"to_user_id\"}"
+
+curl -X PUT http://localhost:5000/follow/1   -H "Content-Type:application/json"   -d "{\"from_id\":\"from_user_id_edited\",\"to_id\":\"to_user_id_edited\"}"
+
+curl http://localhost:5000/follows
+
+curl http://localhost:5000/follow/1
+
+curl -X DELETE http://localhost:5000/follow/1
+```
