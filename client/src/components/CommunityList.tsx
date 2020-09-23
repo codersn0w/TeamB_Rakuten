@@ -3,9 +3,11 @@ import {Community} from "./Community";
 import {Grid} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
-type CommunityType = Readonly<{ name: string }>
+type CommunityType = Readonly<{ id:number,name: string }>
 const initialObject: CommunityType = {
+    id:0,
     name: "",
 }
 
@@ -38,11 +40,15 @@ export const CommunityList = () => {
                 <Grid item xs={10}>
                     <Grid container>
                     {communities && communities.map((community, index) => (
+
                         <Grid item xs={4} key={index} className={classes.communityElement}>
+                            <Link to={`/genre/${community.id}`}>
                             <Grid container justify="center">
                                 <Community name={community.name}></Community>
                             </Grid>
+                                </Link>
                         </Grid>
+
                     ))}
                     </Grid>
                 </Grid>

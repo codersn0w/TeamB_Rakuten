@@ -52,7 +52,7 @@ export const Header = () => {
                             </Grid>
                             <Grid item xs={4}>
                                 <Grid container alignItems="flex-start">
-                                    <SearchBox placeholder="Search..." ></SearchBox>
+                                    <SearchBox placeholder="Search..." defaultWidth={120} focusWidth={200}></SearchBox>
                                 </Grid>
                             </Grid>
                             <Grid item xs={6}>
@@ -66,7 +66,7 @@ export const Header = () => {
                                     {(isAuthenticated || isLoading) &&
                                     <React.Fragment>
                                         <Grid item xs={2}>
-                                            <Link to="/profile">
+                                            <Link to="/notification">
                                                 <NotificationIcon />
                                             </Link>
                                         </Grid>
