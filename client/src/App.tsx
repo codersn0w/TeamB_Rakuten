@@ -16,6 +16,8 @@ import RequestDetails from "./components/RequestDetails";
 import {Typography} from "@material-ui/core";
 
 const NotFound = () => <Typography>404.. This page is not found!</Typography>
+import LendingList from "./components/LendingList";
+import LendingDetails from "./components/LendingDetails";
 
 export const App = () => {
     const {isLoading} = useAuth0();
@@ -75,10 +77,21 @@ export const App = () => {
                         component={RequestDetails}
                         render={(props) => <RequestDetails {...props} />}
                     />
+                    <Route
+                      exact
+                      path="/lending"
+                      component={LendingList}
+                      render={(props) => <LendingList {...props} />}
+                    />
+                    <Route
+                      exact
+                      path="/lending/:id"
+                      component={LendingDetails}
+                      render={(props) => <LendingDetails {...props} />}
+                    />
                     <Route component={NotFound}></Route>
                 </Switch>
                 <Footer></Footer>
             </div>
         </Router>
     );
-};

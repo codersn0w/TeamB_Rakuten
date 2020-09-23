@@ -56,10 +56,10 @@ export default class RequestDetails extends React.Component<Props, States> {
           </div>
         </div>
         <div className="row">
-          <button onClick={this.accept} className="btn btn-primary">
+          <button onClick={this.accept} className="btn btn-primary btn-lg">
             承認
           </button>
-          <button onClick={this.decline} className="btn btn-danger">
+          <button onClick={this.decline} className="btn btn-danger btn-lg">
             拒否
           </button>
         </div>
