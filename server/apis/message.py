@@ -17,7 +17,7 @@ class MessageListAPI(Resource):
         results = MessageModel.query.all()
         jsonData = MessageSchema(many=True).dump(results).data
         #jsonData = json.dumps(results)
-        #print(results)
+        # print(results)
         return jsonify({'items': jsonData})
 
     def post(self):
