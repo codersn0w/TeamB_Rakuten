@@ -28,6 +28,7 @@ pyrsistent==0.15.6
 python-dateutil==2.8.1  
 python3-openid==3.1.0  
 pytz==2019.3  
+# PyYAML==5.3.1  
 PyYAML==5.1.2  
 six==1.13.0  
 SQLAlchemy==1.3.11  
@@ -38,9 +39,16 @@ zipp==0.6.0
 flask_marshmallow
 flask_cors
 pymysql
-sqlalchemy-migrate
-flask-restful
+cryptography
+blueprint
+Cerberus
+Flask-RESTful
+Flask-SQLAlchemy-Session
+python-dotenv
 flask-migrate
 cryptography
 flask-seeder
+<<<<<<< HEAD
 requests
+=======
+>>>>>>> 0072a38d91073370ca55c64b20ad36b78d654b88

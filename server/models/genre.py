@@ -3,6 +3,7 @@ from flask_marshmallow import Marshmallow
 from flask_marshmallow.fields import fields
 from database import db
 
+
 ma = Marshmallow()
 
 
