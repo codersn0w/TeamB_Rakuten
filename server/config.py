@@ -3,7 +3,7 @@ class DevelopmentConfig:
   # SQLAlchemy
   SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{user}:{password}@{host}/{database}?charset=utf8'.format(
     **{
-      'user': 'admin',
+      'user': 'root',
       'password': 'hoge',
       'host': 'db',
       'database': 'hoge',

@@ -5,6 +5,7 @@ from database import init_db
 from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, ThreadAPI
 from apis.message import MessageListAPI, MessageAPI
+from apis.book import BookListAPI, BookAPI
 from config import Config
 
 
