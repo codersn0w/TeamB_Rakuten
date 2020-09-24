@@ -31,6 +31,7 @@ def create_app():
     api.add_resource(GetThreadListAPI2, '/threads/book_id/<book_id>')
     api.add_resource(ThreadAPI, '/thread/<id>')
     api.add_resource(MessageListAPI, '/messages')
+    api.add_resource(GetMessageListAPI, '/messages/<thread_id>')
     api.add_resource(MessageAPI, '/message/<id>')
     api.add_resource(NotificationListAPI, '/notifications')
     api.add_resource(NotificationAPI, '/notification/<id>')

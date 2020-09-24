@@ -13,13 +13,6 @@ class MessageListAPI(Resource):
         self.reqparse.add_argument('sender_id', required=True)
         super(MessageListAPI, self).__init__()
 
-    def get(self):
-        results = MessageModel.query.all()
-        jsonData = MessageSchema(many=True).dump(results).data
-        #jsonData = json.dumps(results)
-        # print(results)
-        return jsonify({'items': jsonData})
-
     def post(self):
         args = self.reqparse.parse_args()
         hoge = MessageModel(args.sentence, args.thread_id, args.sender_id)
@@ -28,6 +21,13 @@ class MessageListAPI(Resource):
         res = MessageSchema().dump(hoge).data
         return res, 201
 
+class GetMessageListAPI(Resource):
+    def get(self, thread_id):
+        results = MessageModel.query.filter_by(thread_id=thread_id).all()
+        jsonData = MessageSchema(many=True).dump(results).data
+        #jsonData = json.dumps(results)
+        # print(results)
+        return jsonify({'items': jsonData})
 
 class MessageAPI(Resource):
     def __init__(self):
