@@ -84,12 +84,7 @@ export const NotificationComponent = () => {
 
     getUserMetadata();
     console.log(userMetadata);
-  }, [getAccessTokenSilently, user, userMetadata]);
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
 
-  useEffect(() => {
     const fetchData = async () => {
       const res = await axios.get(
         `http://localhost:5000/notification/` + user.sub
@@ -98,8 +93,10 @@ export const NotificationComponent = () => {
       setItems(res.data.items);
     };
     fetchData();
-  }, []);
-
+  }, [getAccessTokenSilently, user, userMetadata]);
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
   //後でAPI呼び出しに置き換えます
   // setTimeout(() => {
   //   //user.sub
