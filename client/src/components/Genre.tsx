@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {RouteComponentProps} from "react-router-dom";
+import {Link, RouteComponentProps, useParams} from "react-router-dom";
 import {Divider, Grid, Theme, Typography, withStyles} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {ThreadCard} from "./ThreadCard";
 import {ThreadCreateBox} from "./ThreadCreateBox";
+import axios from "axios";
 
 type OldProps = {} & RouteComponentProps<{ id: string }>;
 
@@ -31,24 +32,23 @@ const useStyles = makeStyles((theme: Theme) => ({
 }))
 
 
-
-type threadType = Readonly<{id:number,genre_id:string,book_id:string,name:string,createTime:string}>
-const initialThreads:threadType[]=[];
+type threadType = Readonly<{ id: number, genre_id: string, book_id: string, name: string, createTime: string }>
+const initialThreads: threadType[] = [];
 
 export const Genre = () => {
     const classes = useStyles()
-    const [threads,setThreads] = useState(initialThreads)
+    const {id} = useParams();
+    const [threads, setThreads] = useState(initialThreads)
 
-    useEffect(()=>{
-        const sample = {
-            id: 0,
-            genre_id:"111",
-            book_id:"111",
-            name:"小説『劇場』のラストについて語るスレ",
-            createTime: "2020-09-23 10:00:00"
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await axios.get("http://localhost:5000/threads");
+            console.log(res);
+            setThreads(res.data.items);
         }
-        setThreads([sample,sample,sample])
-    },[])
+        fetchData()
+    }, [])
+
     return (
         <React.Fragment>
             <Grid container className={classes.genreTitle}>
@@ -75,22 +75,24 @@ export const Genre = () => {
             {/*</ul>*/}
             <Grid container className={classes.threadsArea}>
                 <Grid item xs={1}></Grid>
-            <Typography variant="h5">スレッド一覧</Typography>
+                <Typography variant="h5">スレッド一覧</Typography>
             </Grid>
             {threads.map((thread, index) => (
                 <Grid container key={index}>
                     <Grid item xs={1}></Grid>
                     <Grid item xs={10}>
-              <ThreadCard name={thread.name}></ThreadCard>
-                        </Grid>
+                        <Link to={`/threads/${thread.id}`}>
+                            <ThreadCard name={thread.name}></ThreadCard>
+                        </Link>
                     </Grid>
+                </Grid>
             ))}
             <Grid container className={classes.newThread}>
                 <Grid item xs={2}></Grid>
                 <Grid item xs={8}>
-            <ThreadCreateBox></ThreadCreateBox>
-                    </Grid>
+                    <ThreadCreateBox genreId={id}></ThreadCreateBox>
                 </Grid>
+            </Grid>
         </React.Fragment>
     );
 }

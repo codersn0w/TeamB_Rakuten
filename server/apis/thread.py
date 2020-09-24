@@ -10,7 +10,7 @@ class ThreadListAPI(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name', required=True)
         self.reqparse.add_argument('genre_id', required=True)
-        self.reqparse.add_argument('book_id', required=True)
+        self.reqparse.add_argument('book_id')
         # self.reqparse.add_argument('state', required=True)
         super(ThreadListAPI, self).__init__()
 
