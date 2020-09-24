@@ -17,21 +17,20 @@ type Props = {
     name:string
 }
 
-export const Community:React.FC<Props> = (props) => {
+export const ThreadCard: React.FC<Props> = (props:Props) => {
     const classes = useStyles();
-    return (
-        <React.Fragment>
-            <Card className={classes.card}>
-                <CardActionArea>
+    return(
+        <Card className={classes.card}>
+            <CardActionArea>
                     <CardContent className={classes.cardContent}>
-                        <Grid container justify="center">
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {props.name}
-                        </Typography>
+                        <Grid container>
+                            <Grid item xs={1}></Grid>
+                            <Typography gutterBottom variant="h5">
+                                {props.name}
+                            </Typography>
                         </Grid>
                     </CardContent>
-                </CardActionArea>
-            </Card>
-        </React.Fragment>
+            </CardActionArea>
+        </Card>
     )
 }

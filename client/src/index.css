@@ -17,3 +17,7 @@ a {
   transition-duration: 0.2s;
   color: inherit;
 }
+
+a:hover{
+    text-decoration: none;
+}

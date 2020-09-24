@@ -60,7 +60,7 @@ type Props = {
 }
 
 export const SearchBox: React.FC<Props> = (props: Props) => {
-    const {history, location, match} = useReactRouter();
+    const {history} = useReactRouter();
     const classes = useStyles(props);
     const [query, setQuery] = useState("");
 
