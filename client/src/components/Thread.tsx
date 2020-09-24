@@ -92,7 +92,7 @@ export const Thread = () => {
           <List>
             <Grid container className={classes.outer_mini}>
               {posts.map((post, index) => (
-                <ListItem>
+                <ListItem key={index}>
                   <Grid item xs={12}>
                     <Card>
                       <h2>{post.author}</h2>

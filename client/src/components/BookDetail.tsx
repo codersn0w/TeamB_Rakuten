@@ -85,7 +85,7 @@ export const BookDetail = () => {
   const [img, setImg] = useState("");
   const [author, setAuthor] = useState("");
   const [genre, setGenre] = useState("");
-  const [genre_id, setGenreId] = useState(0);
+  const [genre_id, setGenreId] = useState("");
   const [star, setStar] = useState("");
   const [rentals, setRentals] = useState([
     { owner: "", quality: "", kikan: "", point: "", img: "", id: 0 },
@@ -116,7 +116,7 @@ export const BookDetail = () => {
     );
     setAuthor("すごい太郎");
     setGenre("小説");
-    setGenreId(1);
+    setGenreId("001001");
     setStar("2.5");
   }, 100);
 
@@ -301,7 +301,7 @@ export const BookDetail = () => {
               </Card>
             ))}
           </Grid>
-          <ThreadCreateBox />
+          <ThreadCreateBox genreId={genre_id}/>
         </Grid>
       </Grid>
     </React.Fragment>
