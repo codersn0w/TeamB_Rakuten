@@ -98,10 +98,10 @@ export const Thread = () => {
               {posts.map((post, index) => (
                 // <ListItem key={index}>
                   <Grid item xs={12} key={index} className={classes.chatCard}>
-                    <Card>
+                    {/*<Card>*/}
                       <Typography variant="body2">{post.author}</Typography>
                       <Typography variant="body1">{post.content}</Typography>
-                    </Card>
+                    {/*</Card>*/}
                   </Grid>
                 // </ListItem>
               ))}

@@ -4,10 +4,10 @@ from database import init_db
 #from apis.hoge import HogeListAPI, HogeAPI
 from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, GetThreadListAPI, GetThreadListAPI2, ThreadAPI
-from apis.message import MessageListAPI, MessageAPI
+from apis.message import MessageListAPI, MessageAPI, GetMessageListAPI
 from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
-from apis.book import BookListAPI, BookAPI
+from apis.book import BookListAPI, BookAPI, GetBookListAPI
 from apis.bookrental import BookRentalListAPI, BookRentalAPI
 from apis.author import AuthorListAPI, AuthorAPI
 from config import Config
@@ -33,6 +33,7 @@ def create_app():
     api.add_resource(GetThreadListAPI2, '/threads/book_id/<book_id>')
     api.add_resource(ThreadAPI, '/thread/<id>')
     api.add_resource(MessageListAPI, '/messages')
+    api.add_resource(GetMessageListAPI, '/messages/<thread_id>')
     api.add_resource(MessageAPI, '/message/<id>')
     api.add_resource(NotificationListAPI, '/notifications')
     api.add_resource(NotificationAPI, '/notification/<id>')
@@ -44,6 +45,7 @@ def create_app():
     api.add_resource(AuthorAPI, '/author/<id>')
     api.add_resource(BookListAPI, '/books')
     api.add_resource(BookAPI, '/book/<id>')
+    api.add_resource(GetBookListAPI, '/books/<title>')
 
     return app
 

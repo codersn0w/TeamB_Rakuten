@@ -65,9 +65,9 @@ curl -X POST http://localhost:5000/messages   -H "Content-Type:application/json"
 curl -X PUT http://localhost:5000/message/1   -H "Content-Type:application/json"   -d "{\"sentence\":\"test_comment_edited\",\"thread_id\":1,\"sender_id\":\"001001\"}"
 ```
 
-#### GET (Message一覧)
+#### GET (Thread IDごとのMessage一覧)
 ```
-curl http://localhost:5000/messages
+curl http://localhost:5000/messages/<thread_id>
 ```
 
 #### GET (個別のMessage)
