@@ -14,6 +14,24 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "100%",
+  },
+  userName: {
+    paddingTop: theme.spacing(7),
+    paddingBottom: theme.spacing(3),
+  },
+}));
+
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
   items: Array<{
@@ -26,6 +44,7 @@ interface States {
 }
 
 export const NotificationComponent = () => {
+  const classes = useStyles();
   const [items, setItems] = useState([
     { id: 0, img: "", desc: "", date: "", type: "" },
   ]);
@@ -80,14 +99,14 @@ export const NotificationComponent = () => {
   }, 100);
   return (
     <React.Fragment>
-      <Grid container>
+      <Grid container className={classes.title}>
         <Grid item xs={3}></Grid>
         <Typography variant="h2">通知</Typography>
         <Grid container direction="column">
           <Divider />
         </Grid>
       </Grid>
-      <Grid container>
+      <Grid container className={classes.outer}>
         <Grid item xs={3}></Grid>
         <Grid item xs={6}>
           <List component="nav">
@@ -97,7 +116,11 @@ export const NotificationComponent = () => {
                   <a href={"request/view/" + item.id}>
                     <Grid container>
                       <Grid item xs={2}>
-                        <CardMedia src={item.img} component="img" />
+                        <CardMedia
+                          image={item.img}
+                          component="img"
+                          className="media"
+                        />
                         {/* <img src={item.img} alt="" /> */}
                       </Grid>
                       <Grid item xs={10}>
