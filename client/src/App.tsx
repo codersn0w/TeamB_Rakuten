@@ -6,7 +6,7 @@ import { Profile } from "./components/Profile";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { useAuth0 } from "@auth0/auth0-react";
 import { SearchResult } from "./components/SearchResult";
-import BookDetail from "./components/BookDetail";
+import { BookDetail } from "./components/BookDetail";
 import { Thread } from "./components/Thread";
 import { RequestForm } from "./components/RequestForm";
 import {Genre} from "./components/Genre";
@@ -50,12 +50,13 @@ export const App = () => {
             component={BookRegister}
             render={(props) => <BookRegister {...props} />}
           /> */}
-          <Route
+          <Route exact path="/books/:id" component={BookDetail} />
+          {/* <Route
             exact
             path="/books/:id"
             component={BookDetail}
             render={(props) => <BookDetail {...props} />}
-          />
+          /> */}
           <Route
             exact
             path="/genres/:id"
