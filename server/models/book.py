@@ -17,6 +17,7 @@ class BookModel(db.Model):
     image_url = db.Column(db.String(255), nullable=True)
     item_url = db.Column(db.String(255), nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)
+    thread = db.relationship("ThreadModel")
 
     def __init__(self, title, author, genre_id, item_caption=None, image_url=None, item_url=None, image=None):
         self.title = title
