@@ -10,11 +10,13 @@ from apis.follow import FollowListAPI, FollowAPI
 from apis.book import BookListAPI, BookAPI
 from apis.bookrental import BookRentalListAPI, BookRentalAPI
 from config import Config
+from flask_cors import CORS
 
 
 def create_app():
 
     app = Flask(__name__)
+    cors = CORS(app, resources={r"*": {"origins": "*"}})
     app.config.from_object(Config)
 
     init_db(app)

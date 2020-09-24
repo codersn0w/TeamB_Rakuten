@@ -11,6 +11,7 @@ class DevelopmentConfig:
         })
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
+    CORS_ENABLED = True
 
 
 Config = DevelopmentConfig
