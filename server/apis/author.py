@@ -1,6 +1,6 @@
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
-from models.author import AuhtorModel, AuthorSchema
+from models.author import AuthorModel, AuthorSchema
 from database import db
 import json
 
