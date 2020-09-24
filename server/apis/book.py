@@ -30,7 +30,7 @@ class BookListAPI(Resource):
         return res, 201
     
     def search_by_title(self, key):
-        books = db.session.query(BookModel).filter_by(title.contains(key))
+        books = db.session.query(BookModel).filter_by(title.contains(key)).all()
         jsonData = BookSchema(many=True).dump(books).data
         return jsonify({'items': jsonData})
     
