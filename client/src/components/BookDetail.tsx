@@ -1,5 +1,16 @@
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  Divider,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import { Link, RouteComponentProps } from "react-router-dom";
+import { ThreadCreateBox } from "./ThreadCreateBox";
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -27,10 +38,35 @@ interface States {
     title: string;
     author: string;
     posts: string;
+    id: number;
   }>;
   form: { title: string; content: string };
 }
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  outer_mini: {
+    marginBottom: theme.spacing(4),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "130%",
+  },
+  card: {
+    padding: theme.spacing(2),
+  },
+  wideLine: {
+    lineHeight: theme.spacing(0.5),
+  },
+}));
 export const BookDetail = () => {
+  const classes = useStyles();
   // this.state = {
   //   name: "タイトル",
   //   img: "",
@@ -67,6 +103,7 @@ export const BookDetail = () => {
       title: "",
       author: "",
       posts: "",
+      id: 0,
     },
   ]);
   const [form, setForm] = useState({ title: "", content: "" });
@@ -114,6 +151,7 @@ export const BookDetail = () => {
         author: "山田太郎",
         title: "p15の表記について話し合うスレ",
         posts: "15",
+        id: 0,
       },
     ]);
   }, 400);
@@ -141,81 +179,131 @@ export const BookDetail = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <div className="row">
-        <img className="col-xs-4" src={img} alt="" />
-        <div className="col-xs-8">
-          <h1 className="h1">{name}</h1>
-          <p>著者 {author}</p>
-          <p>
-            ジャンル
-            <a href={"../genre/" + genre_id} className="btn btn-primary">
-              {genre}
-            </a>
-          </p>
-          <p>★ {star}</p>
-        </div>
-      </div>
-      <h2>この本の貸出</h2>
-      <div className="row">
-        {rentals.map((book, index) => (
-          <li className="list-group-item" key={index}>
-            <div className="row">
-              <img src={book.img} alt="" className="col-xs-6" />
-              <div className="col-xs-6">
-                <h3>貸出者 {book.owner}</h3>
-                <p>状態　{book.quality}</p>
-                <p>消費P　{book.point}P</p>
-                <p>期間　{book.kikan}</p>
-                <a
-                  className="btn btn-primary btn-lg"
-                  href={"../request/create/" + book.id}
-                >
-                  詳細
-                </a>
-              </div>
-            </div>
-          </li>
-        ))}
-      </div>
-      <h2>レビュー</h2>
-      {reviews.map((review, index) => (
-        <li className="list-group-item" key={index}>
-          <p>投稿者：{review.author}</p>
-          <div className="row">
-            <p>★{review.star}</p>
-            <h3>{review.title}</h3>
-          </div>
-          <p>{review.content}</p>
-        </li>
-      ))}
-      <h2>スレッド</h2>
-      {threads.map((thread, index) => (
-        <li className="list-group-item" key={index}>
-          <h3>{thread.title}</h3>
-          <div className="row">
-            <p>投稿者：{thread.author}</p>
-            <p>投稿：{thread.posts}件</p>
-          </div>
-        </li>
-      ))}
-      <h3>新規スレッド</h3>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">スレッド名</label>
-        <input
-          type="text"
-          name="title"
-          value={form.title}
-          onChange={onTitleChange}
-        />
-        <label htmlFor="content">投稿内容</label>
-        <textarea
-          name="content"
-          value={form.content}
-          onChange={onContentChange}
-        ></textarea>
-        <input type="submit" value="スレッド作成" />
-      </form>
-    </main>
+    <React.Fragment>
+      <Grid container className={classes.title}>
+        <Grid item xs={3}></Grid>
+        <Typography variant="h2">{name}</Typography>
+        <Grid container direction="column">
+          <Divider />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.outer}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <Grid container className={classes.outer_mini}>
+            <Grid item xs={2}></Grid>
+            <Grid item xs={3}>
+              <CardMedia className={classes.media} image={img} />
+            </Grid>
+            <Grid item xs={1}></Grid>
+            <Grid item xs={6}>
+              <Typography variant="h5" className={classes.wideLine}>
+                著者 {author}
+              </Typography>
+              <Typography variant="h5" className={classes.wideLine}>
+                ジャンル{"   "}
+                <Link to={"../genres/" + genre_id}>
+                  <Button variant="contained" color="primary">
+                    {genre}
+                  </Button>
+                </Link>
+              </Typography>
+              <Typography variant="h5" className={classes.wideLine}>
+                ★ {star}
+              </Typography>
+            </Grid>
+          </Grid>
+          <Typography variant="h4" className={classes.outer_mini}>
+            この本の貸出
+          </Typography>
+          <Grid container className={classes.outer_mini}>
+            {rentals.map((book, index) => (
+              <Grid item xs={6}>
+                <Card key={index} className={classes.card}>
+                  <Grid container>
+                    <Grid item xs={3}>
+                      <CardMedia className={classes.media} image={img} />
+                    </Grid>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={8}>
+                      <h3>貸出者 {book.owner}</h3>
+                      <p>状態　{book.quality}</p>
+                      <p>消費P　{book.point}P</p>
+                      <p>期間　{book.kikan}</p>
+
+                      <Link to={"../request/create/" + book.id}>
+                        <Button variant="contained" color="primary">
+                          詳細
+                        </Button>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+
+          <Typography variant="h4" className={classes.outer_mini}>
+            レビュー
+          </Typography>
+          <Grid className={classes.outer_mini}>
+            {reviews.map((review, index) => (
+              <Card key={index} className={classes.card}>
+                <Grid container>
+                  <Grid item xs={12}>
+                    <Typography variant="h6">
+                      投稿者：{review.author}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={1}>
+                    <Typography variant="h6">★{review.star}</Typography>
+                  </Grid>
+                  <Grid item xs={11}>
+                    <Typography variant="h6">{review.title}</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography variant="h6">{review.content}</Typography>
+                  </Grid>
+                </Grid>
+              </Card>
+            ))}
+          </Grid>
+
+          <Typography variant="h4" className={classes.outer_mini}>
+            スレッド
+          </Typography>
+          <Grid className={classes.outer_mini}>
+            {threads.map((thread, index) => (
+              <Card key={index}>
+                <CardActionArea className={classes.card}>
+                  <Link to={"../threads/" + thread.id}>
+                    <Grid container>
+                      <Grid item xs={10}>
+                        <Grid container>
+                          <Grid item xs={12}>
+                            <Typography variant="h4">{thread.title}</Typography>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Typography variant="h6">
+                              投稿者：{thread.author}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Typography variant="h6">
+                          投稿：{thread.posts}件
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Link>
+                </CardActionArea>
+              </Card>
+            ))}
+          </Grid>
+          <ThreadCreateBox />
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
