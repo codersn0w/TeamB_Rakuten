@@ -9,6 +9,7 @@ from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
 from apis.book import BookListAPI, BookAPI
 from apis.bookrental import BookRentalListAPI, BookRentalAPI
+form apis.author import AuthorListAPI, AuthorAPI
 from config import Config
 
 
@@ -35,6 +36,8 @@ def create_app():
     api.add_resource(FollowAPI, '/follow/<id>')
     api.add_resource(BookRentalListAPI, '/bookrentals')
     api.add_resource(BookRentalAPI, '/bookrentals/<id>')
+    api.add_resource(AuthorAPIList, '/authors')
+    api.add_resource(AuthorAPI, '/authors/<id>')
 
     return app
 
