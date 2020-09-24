@@ -1,5 +1,42 @@
+import {
+  Button,
+  Card,
+  CardMedia,
+  Divider,
+  Grid,
+  Link,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "100%",
+  },
+  cardPadding: {
+    padding: theme.spacing(2),
+  },
+  space: {
+    marginTop: theme.spacing(5),
+  },
+  outer_mini: {
+    paddingBottom: theme.spacing(3),
+  },
+  userName: {
+    paddingTop: theme.spacing(7),
+    paddingBottom: theme.spacing(3),
+  },
+}));
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -33,6 +70,7 @@ interface States {
   }>;
 }
 export const LendingList = () => {
+  const classes = useStyles();
   const [lending, setLending] = useState([
     {
       id: 0,
@@ -118,64 +156,112 @@ export const LendingList = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <h1>やりとり中の本</h1>
-      <h2>貸出した本</h2>
-      {lending.map((book, index) => (
-        <div className="row">
-          <img src={book.img} alt="" className="col-xs-6" />
-          <div className="col-xs-6">
-            <p>{book.name}</p>
-            <p>借りる人 {book.requester}</p>
-            <p>
-              借りる日数 {book.current_days}/{book.max_days}
-            </p>
-            <p>貸出開始 {book.start_date}</p>
-            <p>貸出期限 {book.deadline_date}</p>
-            <a href={"/lending/" + book.id} className="btn btn-primary">
-              詳細
-            </a>
-          </div>
-        </div>
-      ))}
-      <h2>借りた本</h2>
-      {borrowing.map((book, index) => (
-        <div className="row">
-          <img src={book.img} alt="" className="col-xs-6" />
-          <div className="col-xs-6">
-            <p>{book.name}</p>
-            <p>所有者 {book.owner}</p>
-            <p>
-              借りる日数 {book.current_days}/{book.max_days}
-            </p>
-            <p>貸出開始 {book.start_date}</p>
-            <p>貸出期限 {book.deadline_date}</p>
-            <a href={"/lending/" + book.id} className="btn btn-primary">
-              詳細
-            </a>
-          </div>
-        </div>
-      ))}
-      <h2>承認待ちの本</h2>
-      {requests_sent.map((book, index) => (
-        <div className="row">
-          <img src={book.img} alt="" className="col-xs-6" />
-          <div className="col-xs-6">
-            <p>{book.name}</p>
-            <p>所有者 {book.owner}</p>
-            <p>借りる日数 {book.days}</p>
-            <p>リクエスト日 {book.date}</p>
-            <button
-              onClick={() => {
-                cancel(book.id);
-              }}
-              className="btn btn-danger"
-            >
-              キャンセル
-            </button>
-          </div>
-        </div>
-      ))}
-    </main>
+    <React.Fragment>
+      <Grid container className={classes.title}>
+        <Grid item xs={3}></Grid>
+        <Typography variant="h3">やりとり中の本</Typography>
+        <Grid container direction="column">
+          <Divider />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.outer}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <Typography variant="h4" className={classes.space}>
+            貸出した本
+          </Typography>
+          {lending.map((book, index) => (
+            <Card>
+              <Grid container>
+                <Grid item xs={3}>
+                  <CardMedia className={classes.media} image={book.img} />
+                </Grid>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={8}>
+                  <p>{book.name}</p>
+                  <p>借りる人 {book.requester}</p>
+                  <p>
+                    借りる日数 {book.current_days}/{book.max_days}
+                  </p>
+                  <p>貸出開始 {book.start_date}</p>
+                  <p>貸出期限 {book.deadline_date}</p>
+                  <Link
+                    href={"/lending/" + book.id}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <Button variant="contained" color="primary">
+                      詳細
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Card>
+          ))}
+          <Typography variant="h4" className={classes.space}>
+            借りた本
+          </Typography>
+          {borrowing.map((book, index) => (
+            <Card>
+              <Grid container>
+                <Grid item xs={3}>
+                  <CardMedia className={classes.media} image={book.img} />
+                </Grid>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={8}>
+                  <p>{book.name}</p>
+                  <p>所有者 {book.owner}</p>
+                  <p>
+                    借りる日数 {book.current_days}/{book.max_days}
+                  </p>
+                  <p>貸出開始 {book.start_date}</p>
+                  <p>貸出期限 {book.deadline_date}</p>
+                  <Link
+                    href={"/lending/" + book.id}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <Button variant="contained" color="primary">
+                      詳細
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Card>
+          ))}
+          <Typography variant="h4" className={classes.space}>
+            承認待ちの本
+          </Typography>
+          {requests_sent.map((book, index) => (
+            <Card>
+              <Grid container>
+                <Grid item xs={3}>
+                  <CardMedia className={classes.media} image={book.img} />
+                </Grid>
+                <Grid item xs={1}></Grid>
+                <Grid item xs={8}>
+                  <p>{book.name}</p>
+                  <p>所有者 {book.owner}</p>
+                  <p>借りる日数 {book.days}</p>
+                  <p>リクエスト日 {book.date}</p>
+                  <Link
+                    href={"/lending/" + book.id}
+                    onClick={(e: any) => {
+                      e.preventDefault();
+                    }}
+                  >
+                    <Button variant="contained" color="primary">
+                      詳細
+                    </Button>
+                  </Link>
+                </Grid>
+              </Grid>
+            </Card>
+          ))}
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
