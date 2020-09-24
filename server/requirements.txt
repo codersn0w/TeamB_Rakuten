@@ -48,7 +48,4 @@ python-dotenv
 flask-migrate
 cryptography
 flask-seeder
-<<<<<<< HEAD
 requests
-=======
->>>>>>> 0072a38d91073370ca55c64b20ad36b78d654b88
