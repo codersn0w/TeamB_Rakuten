@@ -15,13 +15,16 @@ import { RouteComponentProps } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   title: {
     paddingTop: theme.spacing(10),
-    paddingBottom: theme.spacing(10),
+    paddingBottom: theme.spacing(5),
   },
   outer: {
-    paddingBottom: theme.spacing(20),
+    paddingBottom: theme.spacing(10),
   },
   outer_mini: {
-    marginBottom: theme.spacing(5),
+    marginBottom: theme.spacing(0),
+  },
+  chatCard:{
+    paddingBottom:theme.spacing(1),
   },
   media: {
     position: "relative",
@@ -35,6 +38,7 @@ interface States {
   posts: Array<{ author: string; content: string }>;
   content: string;
 }
+
 export const Thread = () => {
   const classes = useStyles();
   const [title, setTitle] = useState("");
@@ -87,22 +91,22 @@ export const Thread = () => {
         </Grid>
       </Grid>
       <Grid container className={classes.outer}>
-        <Grid item xs={3}></Grid>
-        <Grid item xs={6}>
-          <List>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={8}>
+          {/*<List>*/}
             <Grid container className={classes.outer_mini}>
               {posts.map((post, index) => (
-                <ListItem key={index}>
-                  <Grid item xs={12}>
+                // <ListItem key={index}>
+                  <Grid item xs={12} key={index} className={classes.chatCard}>
                     <Card>
-                      <h2>{post.author}</h2>
-                      <p>{post.content}</p>
+                      <Typography variant="body2">{post.author}</Typography>
+                      <Typography variant="body1">{post.content}</Typography>
                     </Card>
                   </Grid>
-                </ListItem>
+                // </ListItem>
               ))}
             </Grid>
-          </List>
+          {/*</List>*/}
           <form onSubmit={handleSubmit}>
             <h2>投稿</h2>
             <Grid container>

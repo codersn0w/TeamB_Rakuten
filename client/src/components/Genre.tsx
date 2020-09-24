@@ -42,7 +42,7 @@ export const Genre = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await axios.get(`http://localhost:5000/threads/${id}`);
+            const res = await axios.get(`http://localhost:5000/threads/genre_id/${id}`);
             console.log(res);
             setThreads(res.data.items);
         }

@@ -35,7 +35,12 @@ curl -X PUT http://localhost:5000/thread/1   -H "Content-Type:application/json" 
 
 #### GET (GenreごとのThread一覧, 数字はジャンルID)
 ```
-curl http://localhost:5000/threads/001001
+curl http://localhost:5000/threads/genre_id/001001
+```
+
+#### GET (BookごとのThread一覧, 数字はブックID)
+```
+curl http://localhost:5000/threads/book_id/001001
 ```
 
 #### GET (個別のThread)
