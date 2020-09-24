@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
 import {Divider, Grid, Typography} from "@material-ui/core";
-import {CommunityCard} from "./CommunityCard";
 import {BookCard} from "./BookCard";
 import {makeStyles} from "@material-ui/core/styles";
 

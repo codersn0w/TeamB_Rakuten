@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import {Divider, Grid, Theme, Typography, withStyles} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
@@ -24,6 +24,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 export const Genre = () => {
     const classes = useStyles()
+    const [threads,setThreads] = useState([])
     return (
         <React.Fragment>
             <Grid container className={classes.genreTitle}>
