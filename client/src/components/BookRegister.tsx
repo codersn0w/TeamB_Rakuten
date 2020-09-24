@@ -1,5 +1,31 @@
+import {
+  Grid,
+  Typography,
+  Divider,
+  TextField,
+  MenuItem,
+  Button,
+  makeStyles,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  outer_mini: {
+    paddingBottom: theme.spacing(3),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "100%",
+  },
+}));
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -10,6 +36,7 @@ interface States {
   list: Array<{ id: number; name: string; img: string }>;
 }
 export const BookRegister = () => {
+  const classes = useStyles();
   const STATES = {
     name: "",
     point: 1,
@@ -19,8 +46,8 @@ export const BookRegister = () => {
   };
 
   const [name, setName] = useState("");
-  const [point, setPoint] = useState(0);
-  const [days, setDays] = useState(0);
+  const [point, setPoint] = useState(2);
+  const [days, setDays] = useState(2);
   const [id, setId] = useState(0);
   const [list, setList] = useState([{ id: 0, name: "", img: "" }]);
 
@@ -62,7 +89,7 @@ export const BookRegister = () => {
     console.log(days);
   };
 
-  const onBookChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const onBookChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setId(parseInt(event.target.value));
   };
 
@@ -74,47 +101,75 @@ export const BookRegister = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <h1>貸し出す本の登録</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">本の名前で検索</label>
-        <input
-          type="text"
-          name="name"
-          value={name}
-          onChange={onNameChange}
-          className="form-control"
-        />
-        <div className="form-group">
-          <label htmlFor="book">本の選択</label>
-          <select className="form-control" name="book" onChange={onBookChange}>
-            {list.map((item, index) => (
-              <option key={index} value={item.id}>
-                {item.name}
-              </option>
-            ))}
-          </select>
-        </div>
-        <label htmlFor="point">必要P</label>
-        <input
-          type="number"
-          name="point"
-          value={point}
-          min="1"
-          onChange={onPointChange}
-          className="form-control"
-        />
-        <label htmlFor="days">最大貸出日数</label>
-        <input
-          type="number"
-          name="days"
-          value={days}
-          min="2"
-          onChange={onDaysChange}
-          className="form-control"
-        />
-        <input type="submit" value="この本を貸出" />
-      </form>
-    </main>
+    <React.Fragment>
+      <Grid container className={classes.title}>
+        <Grid item xs={3}></Grid>
+        <Typography variant="h3">貸し出す本の登録</Typography>
+        <Grid container direction="column">
+          <Divider />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.outer}>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <form onSubmit={handleSubmit}>
+            <Grid container>
+              <Grid item xs={12} className={classes.outer_mini}>
+                <TextField
+                  type="text"
+                  name="name"
+                  value={name}
+                  onChange={onNameChange}
+                  fullWidth={true}
+                  label="本の名前で検索"
+                />
+              </Grid>
+              <Grid item xs={12} className={classes.outer_mini}>
+                <TextField
+                  label="本の選択"
+                  select
+                  name="book"
+                  onChange={onBookChange}
+                  fullWidth={true}
+                >
+                  {list.map((item, index) => (
+                    <MenuItem key={index} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              </Grid>
+              <Grid item xs={12} className={classes.outer_mini}>
+                <TextField
+                  type="number"
+                  name="point"
+                  label="必要P"
+                  value={point}
+                  inputProps={{ min: "1", step: "1" }}
+                  onChange={onPointChange}
+                  fullWidth={true}
+                />
+              </Grid>
+
+              <Grid item xs={12} className={classes.outer_mini}>
+                <TextField
+                  type="number"
+                  name="days"
+                  label="最大貸出日数"
+                  value={days}
+                  inputProps={{ min: "1", step: "1" }}
+                  onChange={onDaysChange}
+                  fullWidth={true}
+                />
+              </Grid>
+
+              <Button type="submit" variant="contained" fullWidth={true}>
+                この本を貸出
+              </Button>
+            </Grid>
+          </form>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
