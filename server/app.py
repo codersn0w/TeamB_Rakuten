@@ -7,7 +7,7 @@ from apis.thread import ThreadListAPI, GetThreadListAPI, ThreadAPI
 from apis.message import MessageListAPI, MessageAPI
 from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
-from apis.book import BookListAPI, BookAPI
+from apis.book import BookListAPI, BookAPI, GetBookListAPI
 from apis.bookrental import BookRentalListAPI, BookRentalAPI
 from apis.author import AuthorListAPI, AuthorAPI
 from config import Config
@@ -41,6 +41,7 @@ def create_app():
     api.add_resource(AuthorAPI, '/author/<id>')
     api.add_resource(BookListAPI, '/books')
     api.add_resource(BookAPI, '/book/<id>')
+    api.add_resource(GetBookListAPI, '/books/<title>')
 
     return app
 
