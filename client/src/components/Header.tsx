@@ -9,11 +9,12 @@ import {LoginButton} from "./LoginButton";
 import {LogoutButton} from "./LogoutButton";
 import {SearchBox} from "./SearchBox";
 import {useAuth0} from "@auth0/auth0-react";
-
+import {NotificationIcon} from "./NotificationIcon";
 
 const useStyles = makeStyles((theme) => ({
     header: {
         height: 80,
+        backgroundColor:"transparent",
     },
     logo: {
         maxWidth: 60,
@@ -39,19 +40,19 @@ export const Header = () => {
     return (
         <div>
             <MuiThemeProvider theme={theme}>
-                <AppBar position="static">
+                <AppBar position="relative">
                     <Toolbar className={classes.header}>
                         <Grid container justify={"flex-start"}>
                             <Grid item xs={2}>
                                 <Grid container justify="center">
-                                    <Typography variant="h5" color="inherit" component={Link} to="/">
+                                    <Typography variant="h5" component={Link} to="/">
                                         BOOKSKO
                                     </Typography>
                                 </Grid>
                             </Grid>
                             <Grid item xs={4}>
                                 <Grid container alignItems="flex-start">
-                                    <SearchBox placeholder="Search..." ></SearchBox>
+                                    <SearchBox placeholder="Search..." defaultWidth={120} focusWidth={200}></SearchBox>
                                 </Grid>
                             </Grid>
                             <Grid item xs={6}>
@@ -64,9 +65,14 @@ export const Header = () => {
                                     }
                                     {(isAuthenticated || isLoading) &&
                                     <React.Fragment>
+                                        <Grid item xs={1}>
+                                            <Link to="/notification">
+                                                <NotificationIcon />
+                                            </Link>
+                                        </Grid>
                                         <Grid item xs={2}>
                                             <Link to="/profile">
-                                                <Button>profile</Button>
+                                                <Button>マイページ</Button>
                                             </Link>
                                         </Grid>
                                         <Grid item xs={2}>

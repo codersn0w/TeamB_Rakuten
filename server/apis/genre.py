@@ -1,3 +1,8 @@
+import json
+from database import db
+from models.genre import GenreModel, GenreSchema
+from database import db
+from models.genre import GenreModel, GenreSchema
 from flask_restful import Resource, reqparse, abort
 from flask import jsonify
 from models.genre import GenreModel, GenreSchema
@@ -15,8 +20,8 @@ class GenreListAPI(Resource):
     def get(self):
         results = GenreModel.query.all()
         jsonData = GenreSchema(many=True).dump(results).data
-        # jsonData = json.dumps(results)
-        print(results)
+        #jsonData = json.dumps(results)
+        # print(results)
         return jsonify({'items': jsonData})
 
     def post(self):

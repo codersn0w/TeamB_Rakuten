@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme:Theme) => ({
     card:{
         width:"100%",
         margin:theme.spacing(2),
+    },
+    cardContent:{
+        padding:theme.spacing(5),
     }
 }))
 
@@ -14,13 +17,13 @@ type Props = {
     name:string
 }
 
-export const Community:React.FC<Props> = (props) => {
+export const CommunityCard:React.FC<Props> = (props) => {
     const classes = useStyles();
     return (
         <React.Fragment>
             <Card className={classes.card}>
                 <CardActionArea>
-                    <CardContent>
+                    <CardContent className={classes.cardContent}>
                         <Grid container justify="center">
                         <Typography gutterBottom variant="h5" component="h2">
                             {props.name}

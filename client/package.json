@@ -17,11 +17,13 @@
     "axios": "^0.20.0",
     "google-protobuf": "^3.11.4",
     "grpc-web": "1.0.7",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
-    "typescript": "^3.7.5"
+    "typescript": "^3.7.5",
+    "use-react-router": "^1.0.7"
   },
   "scripts": {
     "start": "./node_modules/.bin/react-scripts start",

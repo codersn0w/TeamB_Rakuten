@@ -1,11 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import {fade, Input, Theme} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import useReactRouter from "use-react-router";
 
-const useStyles = makeStyles((theme:Theme) => ({
-    root: {
-    },
+const useStyles = makeStyles((theme: Theme) => ({
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme:Theme) => ({
         color: 'inherit',
         width: '100%',
     },
-    inputInput:(props:Props) => ( {
+    inputInput: (props: Props) => ({
         paddingTop: theme.spacing(1),
         paddingRight: theme.spacing(1),
         paddingBottom: theme.spacing(1),
@@ -55,20 +54,24 @@ const useStyles = makeStyles((theme:Theme) => ({
 }));
 
 type Props = {
-    defaultWidth?:number;
-    focusWidth?:number;
-    placeholder:string,
+    defaultWidth?: number;
+    focusWidth?: number;
+    placeholder: string,
 }
 
-export const SearchBox:React.FC<Props> = (props:Props) => {
+export const SearchBox: React.FC<Props> = (props: Props) => {
+    const {history} = useReactRouter();
     const classes = useStyles(props);
+    const [query, setQuery] = useState("");
 
     return (
-        <div className={classes.root}>
-            <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                    <SearchIcon />
-                </div>
+        <div className={classes.search}>
+            <div className={classes.searchIcon}>
+                <SearchIcon/>
+            </div>
+            <form onSubmit={() => {
+                history.push(`/search/${query}`);
+            }}>
                 <Input
                     placeholder={props.placeholder}
                     disableUnderline
@@ -76,9 +79,10 @@ export const SearchBox:React.FC<Props> = (props:Props) => {
                         root: classes.inputRoot,
                         input: classes.inputInput,
                     }}
-                    // onChange={(event) => search(event.target.value)}
+                    onChange={(event) => setQuery(event.target.value)}
                 />
-            </div>
+            </form>
         </div>
+
     )
 }
