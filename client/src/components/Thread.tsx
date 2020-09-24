@@ -121,6 +121,7 @@ export const Thread = () => {
                   </Grid>
                 </Grid>
                 {/*</Card>*/}
+                <Divider></Divider>
               </Grid>
               // </ListItem>
             ))}
