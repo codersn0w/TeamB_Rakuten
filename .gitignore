@@ -5,4 +5,4 @@ __pycache__/
 mysql_data
 client/package-lock.json
 .DS_Store
-server/migrations
+./server/migrations/

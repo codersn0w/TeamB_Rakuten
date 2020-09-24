@@ -27,7 +27,8 @@ class BookSeeder(Seeder):
         genre_id = "001"+ format(idx, '03')
         percent = idx*100//28
         print(format(percent, "03") + "%")
-        for page_num in range(1, 100):
+        # for page_num in range(1, 100):
+        for page_num in range(1, 10):
             search_books = Search_Books_API(genreId = genre_id, page = page_num)
             bookList = search_books.get_dict()
             if("Items" in bookList):
@@ -39,5 +40,8 @@ class BookSeeder(Seeder):
                     books.item_caption = item["Item"]["itemCaption"]
                     books.image_url = item["Item"]["mediumImageUrl"]
                     books.item_url = item["Item"]["itemUrl"]
-                    self.db.session.add(books)
+                    try:
+                        self.db.session.add(books)
+                    except Exception as e:
+                        print("seed failed")
             

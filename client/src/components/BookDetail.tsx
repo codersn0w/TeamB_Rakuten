@@ -139,7 +139,7 @@ export default class BookDetail extends React.Component<Props, States> {
             <p>
               ジャンル
               <a
-                href={"../genre/" + this.state.genre_id}
+                href={"../genres/" + this.state.genre_id}
                 className="btn btn-primary"
               >
                 {this.state.genre}

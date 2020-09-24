@@ -32,7 +32,7 @@ export const Top = () => {
             </Grid>
             <Grid container justify="center" className={classes.communityTypo}>
                 <Typography variant="h4">
-                    コミュニティ一覧
+                    ジャンル一覧
                 </Typography>
             </Grid>
             <Grid container justify="center">

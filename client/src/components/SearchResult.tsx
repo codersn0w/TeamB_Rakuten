@@ -69,7 +69,7 @@ export const SearchResult = () => {
                     {books && books.map((book, index) => (
 
                             <Grid item xs={2} key={index}>
-                                <Link to={`/book/${book.id}`}>
+                                <Link to={`/books/${book.id}`}>
                                     <Grid container>
                                         <BookCard name={book.name} author={book.author} genre={book.genre}
                                                   img={book.img}/>

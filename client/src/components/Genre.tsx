@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {RouteComponentProps} from "react-router-dom";
 import {Divider, Grid, Theme, Typography, withStyles} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
+import {ThreadCard} from "./ThreadCard";
+import {ThreadCreateBox} from "./ThreadCreateBox";
 
-type Props = {} & RouteComponentProps<{ id: string }>;
+type OldProps = {} & RouteComponentProps<{ id: string }>;
 
 interface States {
     name: string;
@@ -19,12 +21,34 @@ interface States {
 const useStyles = makeStyles((theme: Theme) => ({
     genreTitle: {
         paddingTop: theme.spacing(8)
+    },
+    threadsArea: {
+        paddingTop: theme.spacing(8)
+    },
+    newThread: {
+        paddingTop: theme.spacing(8)
     }
 }))
 
+
+
+type threadType = Readonly<{id:number,genre_id:string,book_id:string,name:string,createTime:string}>
+const initialThreads:threadType[]=[];
+
 export const Genre = () => {
     const classes = useStyles()
-    const [threads,setThreads] = useState([])
+    const [threads,setThreads] = useState(initialThreads)
+
+    useEffect(()=>{
+        const sample = {
+            id: 0,
+            genre_id:"111",
+            book_id:"111",
+            name:"小説『劇場』のラストについて語るスレ",
+            createTime: "2020-09-23 10:00:00"
+        }
+        setThreads([sample,sample,sample])
+    },[])
     return (
         <React.Fragment>
             <Grid container className={classes.genreTitle}>
@@ -38,49 +62,40 @@ export const Genre = () => {
                     <Divider></Divider>
                 </Grid>
             </Grid>
-            <Grid container>
+            {/*<Grid container>*/}
+            {/*    <Grid item xs={1}></Grid>*/}
+            {/*<Typography variant="h5">ニュース</Typography>*/}
+            {/*    </Grid>*/}
+            {/*<ul>*/}
+            {/*    /!*{this.state.news.map((item, index) => (*!/*/}
+            {/*    /!*  <li className="list-group-item" key={index}>*!/*/}
+            {/*    /!*    {item.date} {item.desc}*!/*/}
+            {/*    /!*  </li>*!/*/}
+            {/*    /!*))}*!/*/}
+            {/*</ul>*/}
+            <Grid container className={classes.threadsArea}>
                 <Grid item xs={1}></Grid>
-            <Typography variant="h5">ニュース</Typography>
+            <Typography variant="h5">スレッド一覧</Typography>
+            </Grid>
+            {threads.map((thread, index) => (
+                <Grid container key={index}>
+                    <Grid item xs={1}></Grid>
+                    <Grid item xs={10}>
+              <ThreadCard name={thread.name}></ThreadCard>
+                        </Grid>
+                    </Grid>
+            ))}
+            <Grid container className={classes.newThread}>
+                <Grid item xs={2}></Grid>
+                <Grid item xs={8}>
+            <ThreadCreateBox></ThreadCreateBox>
+                    </Grid>
                 </Grid>
-            <ul>
-                {/*{this.state.news.map((item, index) => (*/}
-                {/*  <li className="list-group-item" key={index}>*/}
-                {/*    {item.date} {item.desc}*/}
-                {/*  </li>*/}
-                {/*))}*/}
-            </ul>
-            <Typography variant="h5">スレッド</Typography>
-            {/*{this.state.threads.map((thread, index) => (*/}
-            {/*  <li className="list-group-item" key={index}>*/}
-            {/*    <h3>{thread.title}</h3>*/}
-            {/*    <div className="row">*/}
-            {/*      <p>投稿者：{thread.author}</p>*/}
-            {/*      <p>投稿：{thread.posts}件</p>*/}
-            {/*    </div>*/}
-            {/*  </li>*/}
-            {/*))}*/}
-            <form>
-                <h3>新規スレッド</h3>
-                <label htmlFor="title">スレッド名</label>
-                <input
-                    type="text"
-                    name="title"
-                    // value={this.state.form.title}
-                    // onChange={this.onTitleChange}
-                />
-                <label htmlFor="content">投稿内容</label>
-                <textarea
-                    name="content"
-                    // value={this.state.form.content}
-                    // onChange={this.onContentChange}
-                ></textarea>
-                <input type="submit" value="スレッド作成"/>
-            </form>
         </React.Fragment>
     );
 }
 
-class _Genre extends React.Component<Props, States> {
+class _Genre extends React.Component<OldProps, States> {
     constructor(props: any) {
         super(props);
 

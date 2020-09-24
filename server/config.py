@@ -7,6 +7,7 @@ class DevelopmentConfig:
             'password': 'hoge',
             'host': 'db',
             'database': 'hoge',
+            'charset': 'utf8mb4',
         })
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = False
