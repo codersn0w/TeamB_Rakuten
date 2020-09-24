@@ -14,7 +14,7 @@ import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { useEffect } from "react";
-import useAuth0 from "@auth0/auth0-react/dist/use-auth0";
+import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
