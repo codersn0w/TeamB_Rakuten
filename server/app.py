@@ -25,8 +25,8 @@ def create_app():
     api.add_resource(GenreListAPI, '/genres')
 
     api.add_resource(GenreAPI, '/genres/<id>')
-    api.add_resource(ThreadListAPI, '/threads')
-    api.add_resource(ThreadAPI, '/threads/<id>')
+    api.add_resource(ThreadListAPI, '/threadslist/<genre_id>')
+    api.add_resource(ThreadAPI, '/thread/<id>')
     api.add_resource(MessageListAPI, '/messages')
     api.add_resource(MessageAPI, '/message/<id>')
     api.add_resource(NotificationListAPI, '/notifications')
