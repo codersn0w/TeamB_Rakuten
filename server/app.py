@@ -9,7 +9,7 @@ from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
 from apis.book import BookListAPI, BookAPI
 from apis.bookrental import BookRentalListAPI, BookRentalAPI
-form apis.author import AuthorListAPI, AuthorAPI
+from apis.author import AuthorListAPI, AuthorAPI
 from config import Config
 
 
