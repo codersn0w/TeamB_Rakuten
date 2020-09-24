@@ -3,7 +3,7 @@ from flask_restful import Api
 from database import init_db
 #from apis.hoge import HogeListAPI, HogeAPI
 from apis.genre import GenreListAPI, GenreAPI
-from apis.thread import ThreadListAPI, GetThreadListAPI, ThreadAPI
+from apis.thread import ThreadListAPI, GetThreadListAPI, GetThreadListAPI2, ThreadAPI
 from apis.message import MessageListAPI, MessageAPI
 from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
@@ -27,7 +27,8 @@ def create_app():
 
     api.add_resource(GenreAPI, '/genres/<id>')
     api.add_resource(ThreadListAPI, '/threads')
-    api.add_resource(GetThreadListAPI, '/threads/<genre_id>')
+    api.add_resource(GetThreadListAPI, '/threads/genre_id/<genre_id>')
+    api.add_resource(GetThreadListAPI2, '/threads/book_id/<book_id>')
     api.add_resource(ThreadAPI, '/thread/<id>')
     api.add_resource(MessageListAPI, '/messages')
     api.add_resource(MessageAPI, '/message/<id>')

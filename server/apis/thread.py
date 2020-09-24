@@ -30,6 +30,14 @@ class GetThreadListAPI(Resource):
         print(results)
         return jsonify({'items': jsonData})
 
+class GetThreadListAPI2(Resource):
+    def get(self, book_id):
+        results = ThreadModel.query.filter_by(book_id=book_id).all()
+        jsonData = ThreadSchema(many=True).dump(results).data
+        # jsonData = json.dumps(results)
+        print(results)
+        return jsonify({'items': jsonData})
+
 class ThreadAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
