@@ -1,18 +1,17 @@
 """empty message
 
-Revision ID: 0922ecc95707
-Revises: 4e8f7d1edd6a
-Create Date: 2020-09-23 14:30:11.936306
+Revision ID: e93b892523ed
+Revises: ce0242bbca2b
+Create Date: 2020-09-24 13:03:40.736648
 
 """
 from alembic import op
 import sqlalchemy as sa
-import sqlalchemy_utils
 
 
 # revision identifiers, used by Alembic.
-revision = '0922ecc95707'
-down_revision = '4e8f7d1edd6a'
+revision = 'e93b892523ed'
+down_revision = 'ce0242bbca2b'
 branch_labels = None
 depends_on = None
 
@@ -22,13 +21,12 @@ def upgrade():
     op.create_table('books',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=255), nullable=False),
-    sa.Column('author', sa.String(length=10), nullable=False),
+    sa.Column('author', sa.String(length=255), nullable=False),
     sa.Column('genre_id', sa.String(length=10), nullable=False),
-    sa.Column('item_caption', sa.String(length=255), nullable=True),
+    sa.Column('item_caption', sa.String(length=500), nullable=True),
     sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('item_url', sa.String(length=255), nullable=True),
     sa.Column('image', sa.LargeBinary(), nullable=True),
-    sa.ForeignKeyConstraint(['genre_id'], ['genres.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

@@ -10,12 +10,12 @@ class ThreadListAPI(Resource):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name', required=True)
         self.reqparse.add_argument('genre_id', required=True)
-        self.reqparse.add_argument('book_id', required=True)
+        self.reqparse.add_argument('book_id')
         # self.reqparse.add_argument('state', required=True)
         super(ThreadListAPI, self).__init__()
 
-    def get(self):
-        results = ThreadModel.query.all()
+    def get(self, genre_id):
+        results = ThreadModel.query.filter_by(genre_id=genre_id).all()
         jsonData = ThreadSchema(many=True).dump(results).data
         # jsonData = json.dumps(results)
         print(results)
