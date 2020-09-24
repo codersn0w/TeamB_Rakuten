@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: theme.spacing(20),
   },
   outer_mini: {
-    paddingBottom: theme.spacing(5),
+    marginBottom: theme.spacing(5),
   },
   media: {
     position: "relative",
@@ -106,7 +106,7 @@ export const Thread = () => {
           <form onSubmit={handleSubmit}>
             <h2>投稿</h2>
             <Grid container>
-              <Grid item xs={12}>
+              <Grid item xs={12} className={classes.outer_mini}>
                 <TextField
                   id="outlined-multiline-static"
                   label="投稿内容"
@@ -122,7 +122,12 @@ export const Thread = () => {
                 <Grid container>
                   <Grid item xs={10}></Grid>
                   <Grid item xs={2}>
-                    <Button type="submit" variant="contained" fullWidth={true}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      fullWidth={true}
+                      color="primary"
+                    >
                       この本を貸出
                     </Button>
                   </Grid>

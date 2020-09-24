@@ -1,5 +1,30 @@
+import {
+  Button,
+  Divider,
+  Grid,
+  makeStyles,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  outer_mini: {
+    marginBottom: theme.spacing(3),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "100%",
+  },
+}));
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -16,6 +41,7 @@ interface States {
   form: { kikan: number };
 }
 export const RequestForm = () => {
+  const classes = useStyles();
   const [name, setName] = useState("");
   const [id, setId] = useState(0);
   const [owner, setOwner] = useState("");
@@ -56,36 +82,60 @@ export const RequestForm = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <h1>レンタルリクエストを送る</h1>
-      <h2>
-        <a href={"../../books/" + id}>{name}</a>
-      </h2>
-      <div className="row">
-        <img src={img} alt="" className="col-xs-6" />
-        <div className="col-xs-6">
-          <h3>貸出者 {owner}</h3>
-          <p>状態　{quality}</p>
-          <p>消費P　{point}P</p>
-          <p>期間　最大{kikan}日</p>
-        </div>
-      </div>
-      <form onSubmit={handleSubmit}>
-        <h2>この本を借りる</h2>
-        <p>所持ポイント {user.point}P</p>
-        <p>消費ポイント {point}P</p>
-        <p>残りポイント {user.point - point}P</p>
-        <label htmlFor="kikan">日数</label>
-        <input
-          type="number"
-          name="kikan"
-          max={kikan}
-          min="1"
-          value={form.kikan}
-          onChange={onKikanChange}
-        />
-        <input type="submit" value="送信" />
-      </form>
-    </main>
+    <React.Fragment>
+      <Grid container className={classes.title}>
+        <Grid item xs={3}></Grid>
+        <Typography variant="h2">レンタルリクエストを送る</Typography>
+        <Grid container direction="column">
+          <Divider />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.outer}>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}>
+          <Typography variant="h3" className="outer_mini">
+            <a href={"../../books/" + id}>{name}</a>
+          </Typography>
+          <Grid container className={classes.outer_mini}>
+            <Grid item xs={3}>
+              <img src={img} alt="" />
+            </Grid>
+            <Grid item xs={3}></Grid>
+            <Grid item xs={6}>
+              <Typography variant="h4">貸出者 {owner}</Typography>
+              <Typography variant="h6">状態　{quality}</Typography>
+              <Typography variant="h6">消費P　{point}P</Typography>
+              <Typography variant="h6">期間　最大{kikan}日</Typography>
+            </Grid>
+          </Grid>
+          <form onSubmit={handleSubmit}>
+            <Grid container>
+              <Grid item xs={3}></Grid>
+              <Grid item xs={6}>
+                <Typography variant="h5">この本を借りる</Typography>
+                <Typography variant="h6">所持ポイント {user.point}P</Typography>
+                <Typography variant="h6">消費ポイント {point}P</Typography>
+                <Typography variant="h6">
+                  残りポイント {user.point - point}P
+                </Typography>
+                <TextField
+                  type="number"
+                  name="kikan"
+                  label="日数"
+                  inputProps={{ max: kikan, step: "1", min: "1" }}
+                  value={form.kikan}
+                  onChange={onKikanChange}
+                  fullWidth={true}
+                />
+                <Button type="submit" variant="contained" color="primary">
+                  送信
+                </Button>
+              </Grid>
+              <Grid item xs={3}></Grid>
+            </Grid>
+          </form>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };

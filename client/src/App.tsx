@@ -12,7 +12,7 @@ import { RequestForm } from "./components/RequestForm";
 import {Genre} from "./components/Genre";
 import { Footer } from "./components/Footer";
 import { NotificationComponent } from "./components/Notification";
-import RequestDetails from "./components/RequestDetails";
+import { RequestDetails } from "./components/RequestDetails";
 import { Typography } from "@material-ui/core";
 import { LendingList } from "./components/LendingList";
 import { LendingDetails } from "./components/LendingDetails";
@@ -83,12 +83,13 @@ export const App = () => {
             component={RequestForm}
             render={(props) => <RequestForm {...props} />}
           /> */}
-          <Route
+          <Route exact path="/request/view/:id" component={RequestDetails} />
+          {/* <Route
             exact
             path="/requests/view/:id"
             component={RequestDetails}
             render={(props) => <RequestDetails {...props} />}
-          />
+          /> */}
           <Route exact path="/lending" component={LendingList} />
           {/* <Route
             exact
