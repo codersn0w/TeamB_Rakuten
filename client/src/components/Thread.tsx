@@ -1,5 +1,33 @@
+import {
+  Grid,
+  Typography,
+  Divider,
+  Card,
+  TextField,
+  List,
+  ListItem,
+  Button,
+  makeStyles,
+} from "@material-ui/core";
 import React, { useState } from "react";
 import { RouteComponentProps } from "react-router-dom";
+
+const useStyles = makeStyles((theme) => ({
+  title: {
+    paddingTop: theme.spacing(10),
+    paddingBottom: theme.spacing(10),
+  },
+  outer: {
+    paddingBottom: theme.spacing(20),
+  },
+  outer_mini: {
+    paddingBottom: theme.spacing(5),
+  },
+  media: {
+    position: "relative",
+    paddingBottom: "100%",
+  },
+}));
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -8,6 +36,7 @@ interface States {
   content: string;
 }
 export const Thread = () => {
+  const classes = useStyles();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([{ author: "", content: "" }]);
@@ -49,24 +78,60 @@ export const Thread = () => {
   };
 
   return (
-    <main className="container-fluid">
-      <h1>{title}</h1>
-      {posts.map((post, index) => (
-        <li className="list-group-item" key={index}>
-          <h2>{post.author}</h2>
-          <p>{post.content}</p>
-        </li>
-      ))}
-      <form onSubmit={handleSubmit}>
-        <h2>投稿</h2>
-        <label htmlFor="content">投稿内容</label>
-        <textarea
-          name="content"
-          value={content}
-          onChange={onContentChange}
-        ></textarea>
-        <input type="submit" value="投稿" />
-      </form>
-    </main>
+    <React.Fragment>
+      <Grid container className={classes.title}>
+        <Grid item xs={3}></Grid>
+        <Typography variant="h3">{title}</Typography>
+        <Grid container direction="column">
+          <Divider />
+        </Grid>
+      </Grid>
+      <Grid container className={classes.outer}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
+          <List>
+            <Grid container className={classes.outer_mini}>
+              {posts.map((post, index) => (
+                <ListItem>
+                  <Grid item xs={12}>
+                    <Card>
+                      <h2>{post.author}</h2>
+                      <p>{post.content}</p>
+                    </Card>
+                  </Grid>
+                </ListItem>
+              ))}
+            </Grid>
+          </List>
+          <form onSubmit={handleSubmit}>
+            <h2>投稿</h2>
+            <Grid container>
+              <Grid item xs={12}>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="投稿内容"
+                  multiline
+                  rows={4}
+                  variant="outlined"
+                  value={content}
+                  onChange={onContentChange}
+                  fullWidth={true}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container>
+                  <Grid item xs={10}></Grid>
+                  <Grid item xs={2}>
+                    <Button type="submit" variant="contained" fullWidth={true}>
+                      この本を貸出
+                    </Button>
+                  </Grid>
+                </Grid>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+      </Grid>
+    </React.Fragment>
   );
 };
