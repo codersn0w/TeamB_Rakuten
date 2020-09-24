@@ -4,7 +4,7 @@ from database import init_db
 #from apis.hoge import HogeListAPI, HogeAPI
 from apis.genre import GenreListAPI, GenreAPI
 from apis.thread import ThreadListAPI, GetThreadListAPI, GetThreadListAPI2, ThreadAPI
-from apis.message import MessageListAPI, MessageAPI, GetMessageListAPI
+from apis.message import MessageListAPI, GetMessageListAPI, MessageAPI
 from apis.notification import NotificationListAPI, NotificationAPI
 from apis.follow import FollowListAPI, FollowAPI
 from apis.book import BookListAPI, BookAPI, GetBookListAPI
