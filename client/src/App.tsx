@@ -17,7 +17,7 @@ import { Typography } from "@material-ui/core";
 import { LendingList } from "./components/LendingList";
 import { LendingDetails } from "./components/LendingDetails";
 import { Followers } from "./components/Followers";
-import BookRegister from "./components/BookRegister";
+import { BookRegister } from "./components/BookRegister";
 
 const NotFound = () => <Typography>404.. This page is not found!</Typography>;
 
@@ -43,12 +43,13 @@ export const App = () => {
             component={SearchResult}
             // render={(props) => <SearchResult {...props} />}
           />
-          <Route
+          <Route exact path="/books/register" component={BookRegister} />
+          {/* <Route
             exact
             path="/books/register"
             component={BookRegister}
             render={(props) => <BookRegister {...props} />}
-          />
+          /> */}
           <Route
             exact
             path="/books/:id"
