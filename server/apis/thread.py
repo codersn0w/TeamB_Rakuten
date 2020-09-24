@@ -14,13 +14,6 @@ class ThreadListAPI(Resource):
         # self.reqparse.add_argument('state', required=True)
         super(ThreadListAPI, self).__init__()
 
-    def get(self):
-        results = ThreadModel.query.all()
-        jsonData = ThreadSchema(many=True).dump(results).data
-        # jsonData = json.dumps(results)
-        print(results)
-        return jsonify({'items': jsonData})
-
     def post(self):
         args = self.reqparse.parse_args()
         hoge = ThreadModel(args.name, args.genre_id, args.book_id)
@@ -29,6 +22,13 @@ class ThreadListAPI(Resource):
         res = ThreadSchema().dump(hoge).data
         return res, 201
 
+class GetThreadListAPI(Resource):
+    def get(self, genre_id):
+        results = ThreadModel.query.filter_by(genre_id=genre_id).all()
+        jsonData = ThreadSchema(many=True).dump(results).data
+        # jsonData = json.dumps(results)
+        print(results)
+        return jsonify({'items': jsonData})
 
 class ThreadAPI(Resource):
     def __init__(self):

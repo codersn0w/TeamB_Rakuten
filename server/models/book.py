@@ -13,7 +13,7 @@ class BookModel(db.Model):
     author = db.Column(db.String(255), nullable=False)
     #author_id = db.Column(db.Integer, nullable=True, db.ForeignKey('authors.id)
     genre_id = db.Column(db.String(10), nullable=False)
-    item_caption = db.Column(db.String(1000), nullable=True)
+    item_caption = db.Column(db.String(500), nullable=True)
     image_url = db.Column(db.String(255), nullable=True)
     item_url = db.Column(db.String(255), nullable=True)
     image = db.Column(db.LargeBinary, nullable=True)

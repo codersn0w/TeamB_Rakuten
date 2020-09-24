@@ -29,9 +29,6 @@ class Search_Books_API():
         query['hits'] = self.HITS
         query['page'] = self.page
 
-
-
-        # include search info
         # query['elements'] = "count,page,first,last,title,author,publisherName,isbn,itemUrl,mediumImageUrl,booksGenreId,booksGenreName"
         query['elements'] = "title,author,booksGenreId,itemCaption,mediumImageUrl,itemUrl"
         return query
