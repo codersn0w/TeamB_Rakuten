@@ -9,8 +9,9 @@ import {
   Button,
   makeStyles,
 } from "@material-ui/core";
-import React, { useState } from "react";
-import { RouteComponentProps } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { RouteComponentProps, useParams } from "react-router-dom";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
   outer_mini: {
     marginBottom: theme.spacing(0),
   },
-  chatCard:{
-    paddingBottom:theme.spacing(1),
+  chatCard: {
+    paddingBottom: theme.spacing(1),
   },
   media: {
     position: "relative",
@@ -44,6 +45,19 @@ export const Thread = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [posts, setPosts] = useState([{ author: "", content: "" }]);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    // const fetchData = async () => {
+    //   const res = await axios.get(
+    //     `http://localhost:5000/thread/${id}`
+    //   );
+    //   console.log(res);
+    //   setThreads(res.data.items);
+    // };
+    // fetchData();
+  }, []);
 
   //後でAPI呼び出しに置き換えます
   setTimeout(() => {
@@ -69,9 +83,7 @@ export const Thread = () => {
   // this.handleSubmit = this.handleSubmit.bind(this);
 
   const onContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    //   this.setState({
-    //     form: { content: event.target.value },
-    //   });
+    setContent(event.target.value);
     //   console.log(this.state.form);
   };
 
@@ -94,48 +106,50 @@ export const Thread = () => {
         <Grid item xs={2}></Grid>
         <Grid item xs={8}>
           {/*<List>*/}
-            <Grid container className={classes.outer_mini}>
-              {posts.map((post, index) => (
-                // <ListItem key={index}>
-                  <Grid item xs={12} key={index} className={classes.chatCard}>
-                    {/*<Card>*/}
-                      <Typography variant="body2">{post.author}</Typography>
-                      <Typography variant="body1">{post.content}</Typography>
-                    {/*</Card>*/}
+          <Grid container className={classes.outer_mini}>
+            {posts.map((post, index) => (
+              // <ListItem key={index}>
+              <Grid item xs={12} key={index} className={classes.chatCard}>
+                {/*<Card>*/}
+                <Grid container>
+                  <Grid item xs={1}>
+                    ICON
                   </Grid>
-                // </ListItem>
-              ))}
-            </Grid>
+                  <Grid item xs={11}>
+                    <Typography variant="body2">{post.author}</Typography>
+                    <Typography variant="body1">{post.content}</Typography>
+                  </Grid>
+                </Grid>
+                {/*</Card>*/}
+              </Grid>
+              // </ListItem>
+            ))}
+          </Grid>
           {/*</List>*/}
           <form onSubmit={handleSubmit}>
-            <h2>投稿</h2>
+            {/* <h2>投稿</h2> */}
             <Grid container>
-              <Grid item xs={12} className={classes.outer_mini}>
+              <Grid item xs={10}>
                 <TextField
                   id="outlined-multiline-static"
                   label="投稿内容"
-                  multiline
-                  rows={4}
+                  // multiline
+                  // rows={4}
                   variant="outlined"
                   value={content}
                   onChange={onContentChange}
                   fullWidth={true}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <Grid container>
-                  <Grid item xs={10}></Grid>
-                  <Grid item xs={2}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      fullWidth={true}
-                      color="primary"
-                    >
-                      この本を貸出
-                    </Button>
-                  </Grid>
-                </Grid>
+              <Grid item xs={2}>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth={true}
+                  color="primary"
+                >
+                  送信
+                </Button>
               </Grid>
             </Grid>
           </form>
