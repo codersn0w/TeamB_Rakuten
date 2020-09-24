@@ -36,7 +36,7 @@ def create_app():
     api.add_resource(FollowAPI, '/follow/<id>')
     api.add_resource(BookRentalListAPI, '/bookrentals')
     api.add_resource(BookRentalAPI, '/bookrentals/<id>')
-    api.add_resource(AuthorAPIList, '/authors')
+    api.add_resource(AuthorListAPI, '/authors')
     api.add_resource(AuthorAPI, '/authors/<id>')
 
     return app
