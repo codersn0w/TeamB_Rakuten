@@ -1,5 +1,8 @@
 # TeamB
 
+## プレゼン資料
+https://docs.google.com/presentation/d/1f7OcyFdxiw-vOu3S-8qI94bquzE4_G_HchVnSREqCNw/edit?usp=sharing
+
 ## Usage
 ```
 docker-compose up -d --build
