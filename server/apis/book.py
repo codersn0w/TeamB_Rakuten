@@ -3,15 +3,15 @@ from flask import jsonify
 from models.book import BookModel, BookSchema
 from database import db
 import json
-
+import codecs
 
 class BookListAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('title', required=True)
-        self.reqparse.add_argument('author')
+        self.reqparse.add_argument('author', required=True)
         self.reqparse.add_argument('item_caption')
-        self.reqparse.add_argunment('image_url')
+        self.reqparse.add_argument('image_url')
         self.reqparse.add_argument('item_url')
         self.reqparse.add_argument('image')
         super(BookListAPI, self).__init__()
@@ -29,11 +29,14 @@ class BookListAPI(Resource):
         res = BookSchema().dump(book).data
         return res, 201
     
-    def search_by_title(self, key):
-        books = db.session.query(BookModel).filter_by(title.contains(key)).all()
+class GetBookListAPI(Resource):
+    def get(self, title):
+        books = BookModel.query.filter_by(title = title).all()
+        #hoge = codecs.open(books, 'w', 'utf-8')
+        #jsonData = BookSchema(many=True).dump(books, hoge, ensure_ascii=False).data
         jsonData = BookSchema(many=True).dump(books).data
         return jsonify({'items': jsonData})
-    
+
 class BookAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()

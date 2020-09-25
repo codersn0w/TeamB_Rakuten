@@ -13,7 +13,8 @@ class ThreadModel(db.Model):
     name = db.Column(db.String(255), nullable=False)
     genre_id = db.Column(db.String(10), db.ForeignKey(
         'genres.id'), nullable=False)
-    book_id = db.Column(db.String(255), nullable=True)
+    book_id = db.Column(db.String(255), db.ForeignKey(
+        'books.id'), nullable=True)
     # book_id = db.Column(db.String(255), nullable=True, ForeignKey('books.id'))
     createTime = db.Column(db.DateTime, nullable=False, default=datetime.now)
     updateTime = db.Column(db.DateTime, nullable=False,

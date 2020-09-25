@@ -9,8 +9,11 @@ import {
   Typography,
 } from "@material-ui/core";
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { ThreadCreateBox } from "./ThreadCreateBox";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 type Props = {} & RouteComponentProps<{ id: string }>;
 interface States {
@@ -107,6 +110,18 @@ export const BookDetail = () => {
     },
   ]);
   const [form, setForm] = useState({ title: "", content: "" });
+  const { id } = useParams();
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(
+        `http://localhost:5000/threads/book_id/` + id
+      );
+      console.log(res);
+      setThreads(res.data.items);
+    };
+    fetchData();
+  }, []);
 
   //後でAPI呼び出しに置き換えます
   setTimeout(() => {
@@ -301,7 +316,7 @@ export const BookDetail = () => {
               </Card>
             ))}
           </Grid>
-          <ThreadCreateBox genreId={genre_id}/>
+          <ThreadCreateBox genreId={genre_id} />
         </Grid>
       </Grid>
     </React.Fragment>

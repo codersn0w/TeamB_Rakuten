@@ -34,19 +34,33 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 type threadType = Readonly<{ id: number, genre_id: string, book_id: string, name: string, createTime: string }>
 const initialThreads: threadType[] = [];
+type genreType = Readonly<{ id: string, name: string, createTime: string, updateTime: string }>
+const initialGenre: genreType = {
+    id: "",
+    name: "",
+    createTime:"",
+    updateTime:"",
+}
 
 export const Genre = () => {
     const classes = useStyles()
     const {id} = useParams();
-    const [threads, setThreads] = useState(initialThreads)
+    const [threads, setThreads] = useState(initialThreads);
+    const [genre,setGenre] = useState(initialGenre);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const res = await axios.get(`http://localhost:5000/threads/${id}`);
-            console.log(res);
+        const fetchThreads = async () => {
+            const res = await axios.get(`http://localhost:5000/threads/genre_id/${id}`);
+            // console.log(res);
             setThreads(res.data.items);
         }
-        fetchData()
+        const fetchGenre = async () => {
+            const res = await axios.get(`http://localhost:5000/genres/${id}`);
+            console.log(res);
+            setGenre(res.data);
+        }
+        fetchThreads();
+        fetchGenre();
     }, [])
 
     return (
@@ -54,7 +68,7 @@ export const Genre = () => {
             <Grid container className={classes.genreTitle}>
                 <Grid item xs={1}></Grid>
                 <Typography variant="h4">
-                    コミュニティ
+                    {genre.name} コミュニティ
                 </Typography>
             </Grid>
             <Grid container>
