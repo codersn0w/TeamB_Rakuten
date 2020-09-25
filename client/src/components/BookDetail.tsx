@@ -124,16 +124,16 @@ export const BookDetail = () => {
   }, []);
 
   //後でAPI呼び出しに置き換えます
-  // setTimeout(() => {
-  //   setName("すごい大冒険");
-  //   setImg(
-  //     "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg"
-  //   );
-  //   setAuthor("すごい太郎");
-  //   setGenre("小説");
-  //   setGenreId("001001");
-  //   setStar("2.5");
-  // }, 100);
+  setTimeout(() => {
+    setName("すごい大冒険");
+    setImg(
+      "https://images-na.ssl-images-amazon.com/images/I/51XXinn9iFL._SX258_BO1,204,203,200_.jpg"
+    );
+    setAuthor("すごい太郎");
+    setGenre("小説");
+    setGenreId("001001");
+    setStar("2.5");
+  }, 100);
 
   setTimeout(() => {
     setRentals([
