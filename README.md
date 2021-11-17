@@ -1,9 +1,5 @@
 # TeamB
 
-## プレゼン資料
-https://docs.google.com/presentation/d/1f7OcyFdxiw-vOu3S-8qI94bquzE4_G_HchVnSREqCNw/edit?usp=sharing
-
-
 ## スクリーンショット(途中段階のもの)
 ![Screenshot1](https://github.com/thunderra1n/TeamB_Rakuten/blob/master/screenshot.png)
 
